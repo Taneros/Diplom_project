@@ -1,0 +1,101 @@
+.container{
+    border-radius: 12px;
+    /* background-color: linear-gradient(261deg, #0B710B 32.63%, #393 98.96%); */
+    background: linear-gradient(261.47deg, #0B710B 32.63%, #339933 98.96%);
+    padding: 32px 32px 0 32px;
+    margin-top: 80px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-sizing: border-box;
+}
+.h2{
+    color:  #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%;
+    
+}
+.discount_wrapper{
+    display: flex;
+    gap: 32px;
+}
+img{
+    width: 748px;
+    height: 360px;
+}
+.form{
+    display: flex;
+    width: 516px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+
+}
+
+.form>label>input{
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%; /* 26px */
+
+    border-radius: 6px;
+    border: 1px solid  #FFF;
+    width: 516px;
+    padding: 16px;
+    background-color: transparent;
+    color: #FFF;
+
+    transition: border 0.3s ease;
+}
+.form>input::placeholder {
+    color: #fff; 
+  }
+  .form>input:hover,
+  .form>input:focus{
+    border-color: #FFF; 
+}
+
+.form>input:focus {
+     outline: none; 
+}
+/* label{
+    outline: none !important;
+    background: transparent;
+} */
+.form__par{
+    color: red;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    text-align: end;
+}
+.button{
+    width: 516px;
+    padding: 16px;
+
+    color:  #282828;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 26px */
+
+    border-radius: 6px;
+    background:  #FFF;
+    border: none;
+    cursor: pointer;
+}
+.form__end{
+    color: #FFF;
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}

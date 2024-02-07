@@ -1,0 +1,42 @@
+/* import {img} from "../../media/image" */
+
+.wrapper{
+    background-image: url('../../media/img.jpg') ;
+    width: 1440px;
+    height: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+}
+h1{
+    margin: 0;
+    color:  #FFF;
+    font-family: Montserrat;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; 
+    /* white-space: pre-line; */
+}
+.container{
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.btn{
+    width: 218px;
+    height: 58px;
+    border-radius:  6px;
+    background: #393;
+    display: flex;
+    padding: 16px 56px;
+    color:  #FFF;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 26px */
+    border: none;
+    cursor: pointer;
+}

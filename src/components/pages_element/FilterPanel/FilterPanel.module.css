@@ -1,0 +1,146 @@
+.filter_wrapper{
+    height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+   
+}
+.price_filter{
+    width: 309px;       
+}
+.price_filter,
+.checkbox,
+.sorter,
+.select_sorter{
+    color:  #282828;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 26px */
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-radius: 6px;
+ 
+  
+}
+.price_filter input{
+    width: 112px;
+    height: 36px;
+    color:  #8B8B8B;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 126%; /* 20.16px */
+    border-radius:  6px;
+    border: 1px solid  #DDD;
+}
+.price_filter input:hover{
+    border: 1px solid #393;
+}
+.price_filter input:focus , .sorter .select_sorter:focus  {
+    outline: none;
+    /* border: 1px solid #393; */
+    background-color: #F1F3F4;
+}
+.checkbox{
+   /* width: 234px; */
+   display: flex;
+   justify-content: space-around;
+   gap: 16px;
+   height: 36px;
+}
+
+.check:checked {
+    background-color:  #393;
+  }
+/* ---------- */
+  .checkbox.style_c {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .checkbox.style_c input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+
+  .checkbox.style_c input:checked ~ .checkbox__checkmark {
+    background-color: #393;
+  }
+  .checkbox.style_c input:checked ~ .checkbox__checkmark:after {
+    opacity: 1;
+  }
+  .checkbox.style_c:hover input ~ .checkbox__checkmark {
+    border: 1px solid #393;
+  }
+  .checkbox.style_c:hover input:checked ~ .checkbox__checkmark {
+    background-color: #393;
+  }
+  .checkbox.style_c .checkbox__checkmark {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 36px;
+    width: 36px;
+    background-color: #ffffff;
+    border: 1px solid  #DDD;
+    transition: background-color 0.25s ease;
+    border-radius: 6px;
+  }
+  .checkbox.style_c .checkbox__checkmark:after {
+    content: "";
+    position: absolute;
+    left:10px;
+    top: -2px;
+    width: 12px;
+    height: 25px;
+    border: solid  #DDD;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+
+.select_sorter{
+    width: 200px;
+    height: 36px;
+    color: var(--txt-black, #282828);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 126%; /* 20.16px */
+    border-radius: 6px;
+    border: 1px solid  #DDD;
+   
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+         padding: 4px;  /* устанавливаем желаемый размер галочки */
+}
+.sorter{
+    position: relative;
+
+}
+.sorter__check{
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+   
+}
