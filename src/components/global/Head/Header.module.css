@@ -7,6 +7,10 @@
     cursor: pointer;
     margin: 0 auto;
     text-decoration: none;
+    
+}
+.container__header{
+    border-bottom: 1px solid #DDDDDD;
 }
 .header_logo{
     width: 70px;

@@ -34,9 +34,9 @@ export default function Categories({showQuantityCategories}) {
 
   ///----
 
-  // const handleCategoryClick = (id) => {
-  //   navigate(`/products/categories/${id}`)
-  // }
+  const handleCategoryClick = (id) => {
+    navigate(`/products/categories/${id}`)
+  }
 
   return (
     <div className={`${s.wrapper} container`} >
@@ -72,29 +72,39 @@ export default function Categories({showQuantityCategories}) {
       
       </div>
 }
-    </div>   
+     
+
+
+{/* {showQuantityCategories &&  <div className={s.category_line_container}>
+<div className={s.categories_line}></div>
+<Link to="/categories"> <AllProductsBtn  buttonText='All categories'/></Link>
+</div>} 
+
+
+{  <div className={s.category_container}>
+{ slicedCategories.map((category) => (
+<div className={s.category_wrapper} key={`${category.id}`} onClick={ () => handleCategoryClick(category.id) }>
+  <img className={s.category_img}
+  src={`${ROOT_URL}${category.image}`}
+ 
+    alt={`${category.title}`}
+  />
+  <p className={s.category_title}>{`${category.title}`} </p>
+</div>
+))}
+</div>
+}  */}
+
+
+
+</div> 
     )
     }
 
-        {/* {showQuantityCategories &&  <div className={s.category_line_container}>
-          <div className={s.categories_line}></div>
-          <Link to="/categories"> <AllProductsBtn  buttonText='All categories'/></Link>
-          </div>} */}
 
-      {/* </div> */}
-        {/* {  <div className={s.category_container}>
-        { slicedCategories.map((category) => (
-          <div className={s.category_wrapper} key={`${category.id}`} onClick={ () => handleCategoryClick(category.id) }>
-            <img className={s.category_img}
-            src={`${baseUrl}${category.image}`}
-           
-              alt={`${category.title}`}
-            />
-            <p className={s.category_title}>{`${category.title}`} </p>
-          </div>
-        ))}
-      </div>} */}
-{/*  </div> */}
+
+    
+
 
 
 

@@ -15,7 +15,24 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    
 }
+.discount_percent{
+position: absolute;
+top: .2rem;
+right: 14rem;
+width: 63px;
+height:34px ;
+background-color: #339933;
+color: #ffff;
+border-radius: 6px;
+font-size: 20px;
+font-weight: SemiBold;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
 .title{
     font-size: 40px;
     font-weight: bold;
@@ -24,6 +41,18 @@
 .price{
     font-size: 64px;
     font-weight: bold;
+}
+.original_price{
+    text-decoration: line-through;
+    color: #8B8B8B;
+    font-size: 40px;
+    font-weight: medium;
+}
+.discount__wrapper{
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    position: relative;
 }
 .counter__container{
     display: flex;
@@ -119,4 +148,15 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+.description__btn{
+    border: none;
+    background-color: #ffff;
+    text-decoration: underline;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: 'Montserrat';
+    font-weight: medium;
 }

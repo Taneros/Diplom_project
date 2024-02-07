@@ -2,14 +2,13 @@ import React from 'react'
 import logo from '../../media/logo.png'
 import cart from "../../media/icon.png"
 import st from './Header.module.css'
-import s from './../.././../styles/Styles.module.css'
 import { Link } from 'react-router-dom';
 
 
 export default function Header() {
   return (
-  
-    <nav className={`${st.header_wrapper} ${s.wrapp}`}>
+  <header className={st.container__header} >
+    <nav className={`${st.header_wrapper} container`}>
        <Link to='/'>
        <img className={st.header_logo} src={logo} alt="logo" />
        </Link>
@@ -26,6 +25,6 @@ export default function Header() {
       </Link>
 
     </nav>
-
+    </header>
   )
 }
