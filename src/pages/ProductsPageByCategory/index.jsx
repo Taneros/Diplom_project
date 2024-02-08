@@ -37,7 +37,6 @@ export default function ProductsPageByCategory() {
 
   return (
     <>
-      {data.length > 0 && !loading && (
         <div className={`${s.wrapper} container`}>
           <FilterPanel />
 
@@ -51,7 +50,6 @@ export default function ProductsPageByCategory() {
             {data.length === 0 && <div>Sorry no products</div>}
           </div>
         </div>
-      )}
     </>
   );
 }
