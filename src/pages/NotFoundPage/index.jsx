@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import image_404 from "./../../components/media/404.png";
 import s from "./NotFoundPage.module.css";
 import { Link } from "react-router-dom";
 
 export default function NotFoundPage() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   return (
     <div className={s.container_page}>
       <div className={s.wrapper_notFounfPage}>

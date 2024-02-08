@@ -9,6 +9,10 @@ import { filterByPrice } from "../../features/products/productsSlice";
 
 export default function MainPage() {
   
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const dispatch = useDispatch()
   const {products: { list, filtered }, categories } = useSelector((state) => state)
   useEffect(() => {

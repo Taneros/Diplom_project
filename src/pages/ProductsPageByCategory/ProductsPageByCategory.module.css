@@ -1,10 +1,7 @@
 
 .wrapper{
-    /* display: flex; */
     cursor: pointer
 }
-
-
 .title{
     text-align: start;
     color:  #282828;
@@ -23,6 +20,8 @@
     grid-gap: 30px;
     max-width: 1360px;
     }
+/*
+
 
 
 .category_img{
@@ -77,12 +76,11 @@
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-    line-height: 130%; /* 26px */
+    line-height: 130%; 
 
-    white-space: nowrap;   /* предотвращает перенос слов на новую строку */
-    overflow: hidden;      /* скрывает текст, выходящий за пределы блока */
-    text-overflow: ellipsis;   /* добавляет многоточие, если текст не помещается */
-    display: block;
+    white-space: nowrap;   
+    overflow: hidden;      
+    text-overflow: ellipsis; 
     width:252px ;
     position: relative;
 }
@@ -101,7 +99,7 @@
 .category_wrapper{
     display: flex;
     flex-direction: column;
-    /* gap: 16px; */
+
     height: 418px;
 
     border-radius: 12px;
@@ -116,9 +114,7 @@
    justify-content: space-between;
    gap:32px;
 }
-/* .price{
-    position: relative;
-} */
+
 .original_price{
     text-decoration: line-through;
     color:#8B8B8B;
@@ -139,7 +135,7 @@
     line-height: 110%;
 }
 .discounted_price{
-    /* position: absolute; */
+  
     color:  #282828;
 font-family: Montserrat;
 font-size: 40px;
@@ -153,41 +149,8 @@ line-height: 110%;
     justify-content: flex-start;
     gap: 16px;
 }
+*/
 
-/* для стилизации кнопки и управления ее видимостью при наведении */
-
-.category_wrapper{
+/* .price{
     position: relative;
-    z-index: 1;
-    cursor: pointer;
-
-}
-
-.addToCartButton {
-    position: absolute;
-    transform: translate(-50%, -120%);
-    width: 90%;
-    margin: 0 auto;
-    z-index: 2;
-    background-color: #339933;
-    color: #ffff;
-    border: none;
-    border-radius: 6px;
-    padding: 16px 32px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-}
-.addToCartButton.visible {
-    opacity: 1;
-  }
-
-  .addToCartButton.hidden {
-    opacity: 0;
-  }
-
-  .addToCartButton:hover {
-    background-color: #000000;    
-  }
+} */

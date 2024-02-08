@@ -18,6 +18,7 @@ import AllSales from './pages/AllSales';
 import { getCategories } from './features/categories/categoriesSlice';
 import productsSlice, { getProducts } from './features/products/productsSlice';
 import { getSingleProduct } from './features/api/apiSlice';
+import ProductsPageByCategory from './pages/ProductsPageByCategory';
 
 
 //TODO 
@@ -43,7 +44,9 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage/>}/>
         <Route path='/categories' element={<CategoriesPage/>}/>
+        {/* <Route path='/categories/:id' element={<CategoriesPage/>}/> */}
         <Route path='/products/all' element={<ProductsPage/>}/>
+        <Route path='/products/categories/:id' element={<ProductsPageByCategory/>}/>
         <Route path='/products/:id' element={<SingleProductPage />} />
         <Route path='/cart' element={<CartPage/>}/>
         {/* <Route path='/sales' element={<ProductsPage type='category'/>}/> */}

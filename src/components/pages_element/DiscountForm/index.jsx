@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import image from "../../media/discount_img.png";
 import { useForm } from "react-hook-form";
 
@@ -17,6 +17,7 @@ export default function DiscountForm() {
     console.log(data);
     reset();
   };
+
 
   return (
     <div className="container">
@@ -48,6 +49,7 @@ export default function DiscountForm() {
                 id="phone"
                 type="tel"
                 placeholder="Phone number" 
+               
                 {...register('phone', {
                     required: 'The field is required',
                     pattern: {
@@ -58,6 +60,7 @@ export default function DiscountForm() {
                 />
                  <p className={s.form__par}>{errors.phone?.message}</p>
               </label>
+              
              
               <label htmlFor="email">
                 <input 

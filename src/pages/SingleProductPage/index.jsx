@@ -12,6 +12,11 @@ import s from "./SingleProductPage.module.css";
 // import {  useGetProductsQuery } from '../../features/api/apiSlice';
 
 export default function SingleProductPage() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
   // Состояние для хранения информации о том,  была ли кнопка нажата
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {

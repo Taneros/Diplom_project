@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from '../AllProducts/AllProducts.module.css'
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,10 +17,25 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
   const { list } = useSelector(({ products }) => products);
   console.log("list", list);
  
+  const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+
+  // const handleAddToCart = () => {
+  //   // Добавление товара в корзину
+  // };
+  
   return (
     <Link to={`/products/${id}`} key={id} className={s.product}>
-    <div className={s.category_wrapper} key={id}>
+    <div className={s.category_wrapper} key={id} 
+    onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
       {/* {list.map(({ id, image, title, discont_price, price }) => ( */}
         <div key={id} className={s.image_container}>
           <div>
@@ -29,6 +44,12 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
               src={ROOT_URL + image}
               alt={title}
             />
+      <button
+        className={`${s.addToCartButton} ${isHovered ? s.visible : s.hidden}`}
+        // onClick={handleAddToCart}
+      >
+        Add to Cart
+      </button>
             {/* <Link to={`/products/${id}`} key={id} className={s.product}> */}
               {discont_price !== null && (
                 <span className={s.discount_label}>
@@ -36,10 +57,12 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
                 </span>
               )}
             {/* </Link> */}
+
+    
           </div>
         </div>
       {/* ))} */}
-      <div className={s.content_wrapper}>
+      <div className={s.content_wrapper}  >
         <p className={s.category_title} title={`${title}`}>
           {title}
         </p>

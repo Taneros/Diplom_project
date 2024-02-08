@@ -28,7 +28,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { ROOT_URL } from "../..";
 
-// Создаем thunk для получения одного продукта
+// thunk для получения одного продукта
 export const getSingleProduct = createAsyncThunk('product/getProduct',
   async (id, thunkAPI) => {
     try {
@@ -41,7 +41,7 @@ export const getSingleProduct = createAsyncThunk('product/getProduct',
   }
 );
 
-// Создаем Slice для управления состоянием одного продукта
+//  Slice для управления состоянием одного продукта
 const apiSlice = createSlice({
   name: 'product',
   initialState: {
@@ -63,6 +63,6 @@ const apiSlice = createSlice({
   },
 });
 
-// Экспортируем actions и reducer
-export const {} = apiSlice.actions;
+
+export const {} = apiSlice.actions; //?
 export default apiSlice.reducer;
