@@ -89,7 +89,7 @@ export default function ProductsPage() {
       <div className={s.category_container}>
         {list.length > 0 &&
           list.map((elem) => (
-            <AllProducts
+            <AllProducts 
               data={elem}
               key={elem.id + elem.title}
               products={list}

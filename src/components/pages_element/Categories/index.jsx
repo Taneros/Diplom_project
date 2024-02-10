@@ -4,8 +4,8 @@ import React, { useEffect } from "react";
 import s from "./Categories.module.css";
 // import { fetchCategories } from "../../../asyncActions/products";
 import AllProductsBtn from "../../UI/AllProductsBtn";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import {  useSelector } from "react-redux";
 import { ROOT_URL } from "../../..";
 
 export default function Categories({ showQuantityCategories }) {
@@ -19,7 +19,7 @@ export default function Categories({ showQuantityCategories }) {
 
   //---------toolkit
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { list } = useSelector(({ categories }) => categories);
 
   let slicedCategories = list;

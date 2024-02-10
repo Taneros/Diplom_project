@@ -1,10 +1,6 @@
-
 .wrapper{
-    /* display: flex; */
     cursor: pointer
 }
-
-
 .title{
     text-align: start;
     color:  #282828;
@@ -13,18 +9,14 @@
     font-style: normal;
     font-weight: 700;
     line-height: 110%; 
-
     }
 .category_container{
     display: flex;
- 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(316px, 1fr));
     grid-gap: 30px;
     max-width: 1360px;
     }
-
-
 .category_img{
     width: 316px;
     height: 284px;
@@ -33,7 +25,6 @@
     margin-bottom: 20px;
     display: block;
     }
-
     .image_container{
         position: relative;
         display: inline-block;
@@ -50,7 +41,6 @@
         align-items: flex-start;
         border-radius: 6px;
     }
-
     .category_line_container{
         display: flex;
         align-items: center;
@@ -61,15 +51,12 @@
         border: 1px solid rgb(229, 229, 229);
         margin: 0;
     }
-
-
 .content_wrapper{
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 0 32px 32px 32px;
     }
-
 .category_title{
     color:  #282828;
     text-align: center;
@@ -78,10 +65,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: 130%; /* 26px */
-
-    white-space: nowrap;   /* предотвращает перенос слов на новую строку */
-    overflow: hidden;      /* скрывает текст, выходящий за пределы блока */
-    text-overflow: ellipsis;   /* добавляет многоточие, если текст не помещается */
+    white-space: nowrap;  
+    overflow: hidden;      
+    text-overflow: ellipsis;   
     display: block;
     width:252px ;
     position: relative;
@@ -101,9 +87,7 @@
 .category_wrapper{
     display: flex;
     flex-direction: column;
-    /* gap: 16px; */
     height: 418px;
-
     border-radius: 12px;
     border: 1px solid #DDD;
     overflow: hidden;
@@ -116,9 +100,6 @@
    justify-content: space-between;
    gap:32px;
 }
-/* .price{
-    position: relative;
-} */
 .original_price{
     text-decoration: line-through;
     color:#8B8B8B;
@@ -139,13 +120,12 @@
     line-height: 110%;
 }
 .discounted_price{
-    /* position: absolute; */
     color:  #282828;
-font-family: Montserrat;
-font-size: 40px;
-font-style: normal;
-font-weight: 600;
-line-height: 110%;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 110%;
 }
 .price{
     display: flex;
@@ -160,8 +140,11 @@ line-height: 110%;
     position: relative;
     z-index: 1;
     cursor: pointer;
-
 }
+.category_wrapper:hover .addToCartButton{
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    }
 
 .addToCartButton {
     position: absolute;
@@ -177,17 +160,8 @@ line-height: 110%;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    transition: opacity 0.3s ease;
     opacity: 0;
 }
-.addToCartButton.visible {
-    opacity: 1;
-  }
-
-  .addToCartButton.hidden {
-    opacity: 0;
-  }
-
   .addToCartButton:hover {
     background-color: #000000;    
   }

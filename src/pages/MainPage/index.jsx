@@ -39,7 +39,7 @@ export default function MainPage() {
         <SaleModule showQuantitySaleItems={4} />
       </div> */}
       <div ref={saleRef}>
-        <SaleModule showQuantitySaleItems={4} products={filtered} amount={4} />
+        <SaleModule showQuantitySaleItems={4} products={filtered}  />
       </div>
     </div>
   );

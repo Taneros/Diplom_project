@@ -4,6 +4,7 @@ import categoriesSlice from "./categories/categoriesSlice";
 import productsSlice from "./products/productsSlice";
 import apiSlice from "./api/apiSlice";
 import categoryProductsSlice from "./categoryProducts/categoryProductsSlice";
+import userSlice from "./user/userSlice";
 
 // import { type } from "@testing-library/user-event/dist/type";
 // import { apiSlice } from "./api/apiSlice";
@@ -13,6 +14,7 @@ export const store = configureStore({
         categories: categoriesSlice,
         products: productsSlice,
         singleProduct: apiSlice,
+        user: userSlice,
         categoryProducts: categoryProductsSlice,
         //  [apiSlice.reducerPath]: apiSlice.reducer,
     },

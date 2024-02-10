@@ -19,6 +19,7 @@ import { getCategories } from './features/categories/categoriesSlice';
 import productsSlice, { getProducts } from './features/products/productsSlice';
 import { getSingleProduct } from './features/api/apiSlice';
 import ProductsPageByCategory from './pages/ProductsPageByCategory';
+import userSlice from './features/user/userSlice';
 
 
 //TODO 

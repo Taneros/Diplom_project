@@ -15,16 +15,16 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
 // }) {
   //-----
   const { list } = useSelector(({ products }) => products);
-  console.log("list", list);
+  // console.log("list", list);
  
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(null);
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  // const handleMouseEnter = (id) => {
+  //   setIsHovered(id);
+  // };
+  // const handleMouseLeave = () => {
+  //   setIsHovered(null);
+  // };
 
 
   // const handleAddToCart = () => {
@@ -34,8 +34,10 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
   return (
     <Link to={`/products/${id}`} key={id} className={s.product}>
     <div className={s.category_wrapper} key={id} 
-    onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+    // onMouseEnter={() => handleMouseEnter(id)}
+    //   onMouseLeave={handleMouseLeave}
+
+      >
       {/* {list.map(({ id, image, title, discont_price, price }) => ( */}
         <div key={id} className={s.image_container}>
           <div>
@@ -45,20 +47,15 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
               alt={title}
             />
       <button
-        className={`${s.addToCartButton} ${isHovered ? s.visible : s.hidden}`}
-        // onClick={handleAddToCart}
+        className={s.addToCartButton} 
       >
         Add to Cart
       </button>
-            {/* <Link to={`/products/${id}`} key={id} className={s.product}> */}
               {discont_price !== null && (
                 <span className={s.discount_label}>
                   {`-${((1 - discont_price / price) * 100).toFixed(0)}%`}
                 </span>
-              )}
-            {/* </Link> */}
-
-    
+              )} 
           </div>
         </div>
       {/* ))} */}

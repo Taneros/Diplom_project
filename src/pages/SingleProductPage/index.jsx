@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  getSingleProduct,
-  useGetProductsQuery,
-} from "../../features/api/apiSlice";
+import { Link, useParams } from "react-router-dom";
+import { getSingleProduct } from "../../features/api/apiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ROOT_URL } from "../..";
 import s from "./SingleProductPage.module.css";
-
+import { addItemToCart } from "../../features/user/userSlice";
+import { getRelatedProducts } from "../../features/products/productsSlice";
 
 // import {  useGetProductsQuery } from '../../features/api/apiSlice';
 
-export default function SingleProductPage() {
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-  
+export default function SingleProductPage({ item, data }) {
   // Состояние для хранения информации о том,  была ли кнопка нажата
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
@@ -26,17 +19,28 @@ export default function SingleProductPage() {
 
   //Для скрытия текста
   const [showFullDescription, setShowFullDescription] = useState(false);
-
   const maxCharacters = 200; // Максимальное количество символов в коротком описании
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
 
   const { id } = useParams();
+
   const dispatch = useDispatch();
 
   const { details, isLoading } = useSelector((state) => state.singleProduct);
   // console.log("details  ....", details);
+
+  //cart
+  const [quantity, setQuantity] = useState(1);
+  const { related, list } = useSelector(({ products }) => products);
+
+  useEffect(() => {
+    if (!data || !list.length) return;
+    dispatch(getRelatedProducts(data.category.id));
+    console.log('...data....', data)
+    dispatch(getSingleProduct(id));
+  }, [data, dispatch, list.length, id]);
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
@@ -46,16 +50,29 @@ export default function SingleProductPage() {
     return <p>Loading...</p>;
   }
 
+  const addToCart = () => {
+    dispatch(addItemToCart({ ...data, quantity: quantity }));
+  };
+
+  const handleDecrement = () => {
+    // Уменьшаем количество товара на 1
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    // Увеличиваем количество товара на 1
+    setQuantity(quantity + 1);
+  };
+
+  //-----
+ 
+
+
+
   return (
     <>
-      {/* <Link to={`/products/${id}`}> */}
-      {/* <div key={details[0].id}>
-          <h2>{details[0].title}</h2>
-          <p>{details[0].description}</p>
-          <p>{details[0].price}</p>
-          <img src={ROOT_URL+ details[0].image}/>
-        </div> */}
-
       {Array.isArray(details) && details.length > 0 ? (
         <div key={details[0].id} className="container">
           {details.map(
@@ -88,16 +105,14 @@ export default function SingleProductPage() {
                     </div>
                     <div className={s.counter__container}>
                       <div className={s.count__wrapper}>
-                        <button className={s.count_btn}>-</button>
-                        <div className={s.count}>4</div>
-                        <button className={s.count_btn}>+</button>
+                        <button className={s.count_btn} onClick={handleDecrement}>-</button>
+                        <div className={s.count}>{quantity}</div>
+                        <button className={s.count_btn} onClick={handleIncrement}>+</button>
                       </div>
+
                       <button
                         className={`${s.button} ${isClicked ? s.click : ""}`}
-                        onClick={handleClick}
-                      >
-                        Add to cart
-                      </button>
+                        onClick={addToCart} > Add to cart </button>
                     </div>
 
                     <div className={s.description__wrapper}>

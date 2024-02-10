@@ -9,8 +9,9 @@ export default function FilterPanel() {
   // const handleCheckboxChange = () => {
   //   setIsChecked(!isChecked);
   // // };
-  // const { list } = useSelector(({ products }) => products )
+   const { list } = useSelector(({ products }) => products )
 
+const [isSelected, setIsSelected ] = useState('false')
 
   const [selectedOption, setSelectedOption] = useState('by default');
 
@@ -18,7 +19,9 @@ export default function FilterPanel() {
     setSelectedOption(e.target.value);
   }
 
-
+// const isCheckboxSelected = () => {
+//   setIsSelected === 'false' ? list.
+// }
 
   return (
     <div className="container">
