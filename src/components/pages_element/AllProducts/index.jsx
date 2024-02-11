@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from '../AllProducts/AllProducts.module.css'
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ROOT_URL } from "../../..";
+import { getRelatedProducts } from "../../../features/products/productsSlice";
 
 export default function AllProducts({ data: {id, title, image, price, discont_price}}) {
 
@@ -14,7 +15,10 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
 //   discont_price,
 // }) {
   //-----
-  const { list } = useSelector(({ products }) => products);
+   const { list } = useSelector(({ products }) => products);
+
+
+
   // console.log("list", list);
  
   // const [isHovered, setIsHovered] = useState(null);
@@ -33,11 +37,7 @@ export default function AllProducts({ data: {id, title, image, price, discont_pr
   
   return (
     <Link to={`/products/${id}`} key={id} className={s.product}>
-    <div className={s.category_wrapper} key={id} 
-    // onMouseEnter={() => handleMouseEnter(id)}
-    //   onMouseLeave={handleMouseLeave}
-
-      >
+    <div className={s.category_wrapper} key={id}  >
       {/* {list.map(({ id, image, title, discont_price, price }) => ( */}
         <div key={id} className={s.image_container}>
           <div>

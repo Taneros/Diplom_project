@@ -3,25 +3,30 @@ import s from "./FilterPanel.module.css";
 import { BsChevronDown } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
+
+
 export default function FilterPanel() {
-  // const [isChecked, setIsChecked] = useState(false);
 
   // const handleCheckboxChange = () => {
   //   setIsChecked(!isChecked);
   // // };
-   const { list } = useSelector(({ products }) => products )
 
-const [isSelected, setIsSelected ] = useState('false')
 
+    const { list } = useSelector(({ products }) => products )
   const [selectedOption, setSelectedOption] = useState('by default');
 
-  const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
-  }
+ const handleSelectChange = (e) => {
+  setSelectedOption(e.target.value);
+   }
 
-// const isCheckboxSelected = () => {
-//   setIsSelected === 'false' ? list.
-// }
+ 
+  const [isSelected, setIsSelected ] = useState('false')
+
+ const isCheckboxSelected = () => {
+  setIsSelected(!isSelected )
+} 
+
+console.log("isSelected", isSelected)
 
   return (
     <div className="container">
@@ -33,9 +38,9 @@ const [isSelected, setIsSelected ] = useState('false')
         </div>
         <div className={s.checkbox}>
           <span>Discounted items</span>
-           <label className={`${s.checkbox} ${s.style_c}`}>
-            <input type="checkbox" />
-            <div className={s.checkbox__checkmark}></div>
+           <label className={`${s.checkbox} ${s.style_c}`} >
+            <input type="checkbox"  onClick={isCheckboxSelected}/>
+            <div className={s.checkbox__checkmark} ></div>
           </label>
         </div>
         <div className={s.sorter}>

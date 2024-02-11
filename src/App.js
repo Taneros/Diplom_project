@@ -20,6 +20,7 @@ import productsSlice, { getProducts } from './features/products/productsSlice';
 import { getSingleProduct } from './features/api/apiSlice';
 import ProductsPageByCategory from './pages/ProductsPageByCategory';
 import userSlice from './features/user/userSlice';
+import checkboxSlice from './features/checkbox/checkboxSlice';
 
 
 //TODO 
@@ -36,6 +37,8 @@ function App() {
     dispatch(getCategories())
     dispatch(getProducts())
     dispatch(getSingleProduct())
+    // dispatch(checkboxSlice())
+    // dispatch(getRelatedProducts())
     // dispatch(productsSlice())
   }, [dispatch])
 

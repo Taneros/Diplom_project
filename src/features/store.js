@@ -6,6 +6,7 @@ import apiSlice from "./api/apiSlice";
 import categoryProductsSlice from "./categoryProducts/categoryProductsSlice";
 import userSlice from "./user/userSlice";
 
+
 // import { type } from "@testing-library/user-event/dist/type";
 // import { apiSlice } from "./api/apiSlice";
 
@@ -16,6 +17,8 @@ export const store = configureStore({
         singleProduct: apiSlice,
         user: userSlice,
         categoryProducts: categoryProductsSlice,
+        // checkbox: checkboxSlice,
+        // getRelatedProducts: getRelatedProducts ,
         //  [apiSlice.reducerPath]: apiSlice.reducer,
     },
     // //  middleware: (getMiddleware) => getMiddleware().concat(apiSlice.middleware(type)),

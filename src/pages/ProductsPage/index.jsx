@@ -81,6 +81,7 @@ export default function ProductsPage() {
   //     </div>)
   //   );
 
+  
   return (
     <div className={`${s.wrapper} container`}>
       <h2>All products</h2>
