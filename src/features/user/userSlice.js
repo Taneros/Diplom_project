@@ -134,15 +134,31 @@ reducers: {
   },
   decrementQuantity: (state, {payload}) => {
     const { id } = payload;
-    const item = state.cart.find((item) => item.id === id);
-    if (item && item.quantity > 1) {
-      item.quantity -= 1;
+    const itemIndex = state.cart.findIndex((item) => item.id === id);
+    if (itemIndex !== -1) {
+      if (state.cart[itemIndex].quantity === 1) {
+        // Если количество товара равно 1, удаляем его из корзины
+        state.cart.splice(itemIndex, 1);
+      } else {
+        // В противном случае уменьшаем количество товара на 1
+        state.cart[itemIndex].quantity -= 1;
+      }
     }
   },
+  clearCart: (state) => {
+    state.cart = []
+  },
+  // selectTotalItemCount : (state) => 
+  // state.user.cart.reducer((total, item) => total + item.quantity)
 },
 });
 
-export const { addItemToCart, updateCartItemQuantity, incrementQuantity, decrementQuantity } = userSlice.actions;
+
+export const { addItemToCart, updateCartItemQuantity, incrementQuantity, decrementQuantity, clearCart } = userSlice.actions;
+
+export const selectTotalItemCount = (state) =>
+  state.user.cart.reduce((total, item) => total + item.quantity, 0);
+
 export default userSlice.reducer;
 
 

@@ -19,12 +19,9 @@
 .header_img_cart{
     width: 48px;
     height: 48px;
+    position: relative;
 }
-/* .header_nav_menu{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
+
 .header_nav_menu ul{
     display: flex;
     width: 518px;
@@ -49,3 +46,22 @@ a{
     font-weight: 500;
     line-height: 130%;
 }
+.item__count{
+    width: 26px;
+    height: 26px;
+    border-radius:50%;
+    background-color: #339933;
+    color: #fff;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    position: absolute;
+    top: 45px;
+}
+.header_nav_menu ul .list__item a:hover{
+    color: #339933;
+    border-bottom: 2px solid #339933;
+}
+

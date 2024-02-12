@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart, decrementQuantity, incrementQuantity, removeItemFromCart, updateCartItemQuantity } from "../../features/user/userSlice";
+import { addItemToCart, clearCart, decrementQuantity, incrementQuantity, removeItemFromCart, updateCartItemQuantity } from "../../features/user/userSlice";
 import { ROOT_URL } from "../..";
 import { useForm } from "react-hook-form";
 import s from "./Cartpage.module.css";
@@ -11,6 +11,8 @@ export default function CartPage() {
   // }, []);
 
   //form
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false)
   const dispatch = useDispatch();
   const {
     register,
@@ -30,12 +32,28 @@ export default function CartPage() {
         title: item.title,
         quantity: item.quantity,
         price: item.price,
-      }))
+      })),
+      totalPrice, 
+      totalCount,
+
     }
-    console.log(formData);
+    console.log(formData, 'formData...');
+
+  
+
+
     reset(); // Сбрасываем значения формы
+
+    dispatch(clearCart())
+       // окно с поздравлением
+       setIsSubmitted(true);
+       setShowCongratulations(true);
   };
 
+    // для закрытия окна с поздравлениями
+    const handleCloseCongratulations = () => {
+      setShowCongratulations(false);
+    };
   // const [quantity, setQuantity] = useState(1);
   const cart = useSelector((state) => state.user.cart);
 
@@ -82,7 +100,17 @@ export default function CartPage() {
   // };
 
   return (
+    
     <div className={`${s.wrapper} container`}>
+
+{showCongratulations && (
+        <div>
+          <h2>Congratulations!</h2>
+          <p>Your order has been successfully submitted.</p>
+          <button onClick={handleCloseCongratulations}>Close</button>
+        </div>
+      )}
+
       <h1>Shopping cart</h1>
       <div className={s.wrapper__content}>
       <div className={s.container__products}>
@@ -111,6 +139,7 @@ export default function CartPage() {
           </div>
         ))}
         </div>
+        {cart.length > 0 && (
         <form onSubmit={handleSubmit(handleDiscountSubmit)} className={s.form}>
           <div>
             <h3>Order details</h3>
@@ -178,6 +207,7 @@ export default function CartPage() {
             </button>
           </div>
         </form>
+        )}
       </div>
     </div>
   );

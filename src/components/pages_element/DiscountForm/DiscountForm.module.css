@@ -92,6 +92,10 @@ img{
     border: none;
     cursor: pointer;
 }
+.button:hover{
+    background-color: #000000;
+    color: white;
+}
 .form__end{
     color: #FFF;
     font-size: 16px;
