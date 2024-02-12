@@ -15,6 +15,7 @@ export default function CartPage() {
 
 
 console.log(cart, 'cart....')
+
   const handleAddToCart = (item) => {
     dispatch(addItemToCart(item))
   };

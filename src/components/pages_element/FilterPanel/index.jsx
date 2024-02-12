@@ -1,52 +1,60 @@
 import React, { useState } from "react";
 import s from "./FilterPanel.module.css";
 import { BsChevronDown } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { filterByPriceRange, setMaxPrice, setMinPrice } from "../../../features/products/productsSlice";
 
 
 
-export default function FilterPanel() {
-
-  // const handleCheckboxChange = () => {
-  //   setIsChecked(!isChecked);
-  // // };
+export default function FilterPanel({ onCheckboxChange, onOptionChange,maxPrice, minPrice,handleMaxPriceChange, handleMinPriceChange}) {
 
 
-    const { list } = useSelector(({ products }) => products )
+
+    // const { list } = useSelector(({ products }) => products )
   const [selectedOption, setSelectedOption] = useState('by default');
 
- const handleSelectChange = (e) => {
-  setSelectedOption(e.target.value);
-   }
+  //filter from ..to
+  const handleEnterKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+  };
 
- 
-  const [isSelected, setIsSelected ] = useState('false')
-
- const isCheckboxSelected = () => {
-  setIsSelected(!isSelected )
-} 
-
-console.log("isSelected", isSelected)
+// console.log("isSelected", isSelected)
 
   return (
     <div className="container">
       <div className={s.filter_wrapper}>
         <div className={s.price_filter}>
           <span>Price</span>
-          <input placeholder="from" type="text" />
-          <input placeholder="to" type="text" />
+          <form >
+          <input 
+              placeholder="from" 
+              type="text"  
+              value={minPrice}
+              onChange={ handleMinPriceChange}
+              onKeyDown={handleEnterKeyDown}
+            />
+          <input 
+              placeholder="to" 
+              type="text" 
+              value={maxPrice}
+              onChange={ handleMaxPriceChange }
+              onKeyDown={handleEnterKeyDown}
+             />
+             </form>
         </div>
         <div className={s.checkbox}>
           <span>Discounted items</span>
            <label className={`${s.checkbox} ${s.style_c}`} >
-            <input type="checkbox"  onClick={isCheckboxSelected}/>
+            <input type="checkbox"  onClick={onCheckboxChange}/>
             <div className={s.checkbox__checkmark} ></div>
           </label>
         </div>
         <div className={s.sorter}>
           
           <span>Sorted</span>
-          <select className={s.select_sorter} >
+          <select className={s.select_sorter} onChange={(e) => onOptionChange(e.target.value)}>
             <option>by default</option>
             <option>newest</option>
             <option>price: high-low</option>
