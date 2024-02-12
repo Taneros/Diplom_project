@@ -52,7 +52,30 @@ export default function SingleProductPage({ item, data }) {
   const addToCart = () => {
     dispatch(addItemToCart({ ...details[0], quantity: quantity}));
   };
+  
 console.log('details...', details)
+
+  // const handleDecrement = () => {
+  //   // Уменьшаем количество товара на 1
+  //   if (quantity > 1) {
+  //    const newQuantity = quantity - 1;
+  //    setQuantity(newQuantity)
+  //     dispatch(updateCartItemQuantity({ id: item.id, quantity: newQuantity }));
+  //   }
+  // };
+
+  // const handleIncrement = () => {
+  //   // Увеличиваем количество товара на 1
+  //   if (details && details.length > 0) {
+  //     const productId = details[0].id;
+  //     const newQuantity = quantity + 1;
+  //     setQuantity(newQuantity);
+  //     dispatch(updateCartItemQuantity({ id: productId, quantity: newQuantity}));
+  //   }
+  // };
+
+
+
   const handleDecrement = () => {
     // Уменьшаем количество товара на 1
     if (quantity > 1) {
@@ -64,8 +87,7 @@ console.log('details...', details)
     // Увеличиваем количество товара на 1
     setQuantity(quantity + 1);
   };
-
-  //-----
+    //-----
 
   return (
     <>

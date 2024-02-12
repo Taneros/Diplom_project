@@ -16,30 +16,21 @@ import NotFoundPage from './pages/NotFoundPage';
 import AllSales from './pages/AllSales';
 
 import { getCategories } from './features/categories/categoriesSlice';
-import productsSlice, { getProducts } from './features/products/productsSlice';
+import  { getProducts } from './features/products/productsSlice';
 import { getSingleProduct } from './features/api/apiSlice';
 import ProductsPageByCategory from './pages/ProductsPageByCategory';
-import userSlice from './features/user/userSlice';
-import checkboxSlice from './features/checkbox/checkboxSlice';
 
 
-//TODO 
-/**
- * 
- * for single product
-  * products/product/:id
-  **/
+
 
 function App() {
+  
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getCategories())
     dispatch(getProducts())
     dispatch(getSingleProduct())
-    // dispatch(checkboxSlice())
-    // dispatch(getRelatedProducts())
-    // dispatch(productsSlice())
   }, [dispatch])
 
   return (
@@ -48,12 +39,10 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage/>}/>
         <Route path='/categories' element={<CategoriesPage/>}/>
-        {/* <Route path='/categories/:id' element={<CategoriesPage/>}/> */}
         <Route path='/products/all' element={<ProductsPage/>}/>
         <Route path='/products/categories/:id' element={<ProductsPageByCategory/>}/>
         <Route path='/products/:id' element={<SingleProductPage />} />
         <Route path='/cart' element={<CartPage/>}/>
-        {/* <Route path='/sales' element={<ProductsPage type='category'/>}/> */}
         <Route path='/sales' element={<AllSales type='category'/>}/>
         <Route path='*' element={<NotFoundPage/>}/>
       </Routes>

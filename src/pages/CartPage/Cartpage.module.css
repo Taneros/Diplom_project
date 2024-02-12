@@ -31,7 +31,7 @@
 .form{
     background-color: #DDDDDD;
     width: 548px;
-    max-height: 582px;
+    height: 582px;
     display: flex;
     flex-direction: column;
     gap: 32px;

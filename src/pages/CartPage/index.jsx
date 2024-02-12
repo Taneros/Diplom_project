@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart } from "../../features/user/userSlice";
+import { addItemToCart, decrementQuantity, incrementQuantity, removeItemFromCart, updateCartItemQuantity } from "../../features/user/userSlice";
 import { ROOT_URL } from "../..";
 import { useForm } from "react-hook-form";
 import s from "./Cartpage.module.css";
 
 export default function CartPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   //form
   const dispatch = useDispatch();
@@ -20,19 +20,66 @@ export default function CartPage() {
   } = useForm();
 
   const handleDiscountSubmit = (data) => {
-    console.log(data);
-    reset();
+    const formData = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+
+      cart: cart.map(item => ({
+        id: item.id,
+        title: item.title,
+        quantity: item.quantity,
+        price: item.price,
+      }))
+    }
+    console.log(formData);
+    reset(); // Сбрасываем значения формы
   };
 
-
+  // const [quantity, setQuantity] = useState(1);
   const cart = useSelector((state) => state.user.cart);
 
+  const calculateTotalPrice = (cart) => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+  const calculateTotalCount  = (cart) => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  const handleIncrement = (itemId) => {
+    dispatch(incrementQuantity({id: itemId}));
+  };
+
+  //  для уменьшения количества товара в корзине
+  const handleDecrement = (itemId) => {
+    dispatch(decrementQuantity({id: itemId}));
+  };
+
+  // Общая стоимость товаров в корзине
+  const totalPrice = calculateTotalPrice(cart);
+
+  const totalCount = calculateTotalCount(cart)
   console.log(cart, "cart....");
+  
 
   const handleAddToCart = (item) => {
     dispatch(addItemToCart(item));
   };
 
+  // const handleDecrement = (itemId, quantity) => {
+  //   // Уменьшаем количество товара на 1
+  //     if (quantity > 1) {
+  //       dispatch(updateCartItemQuantity({ id: itemId, quantity: quantity - 1 }));
+  //     }
+  // };
+
+  // const handleIncrement = (itemId, quantity) => {
+  //   dispatch(updateCartItemQuantity({ id: itemId, quantity: quantity + 1 }));
+  // };
+
+  // const handleRemoveItem = (itemId) => {
+  //   dispatch(removeItemFromCart({ id: itemId }));
+  // };
 
   return (
     <div className={`${s.wrapper} container`}>
@@ -46,6 +93,15 @@ export default function CartPage() {
               </div>
               <div>
                 <h3>{item.title}</h3>
+
+                <div>
+
+                <div className={s.count__wrapper}>
+                        <button className={s.count_btn} onClick={() => handleDecrement(item.id, item.quantity)}>-</button>
+                        <div className={s.count}>{item.quantity}</div>
+                        <button className={s.count_btn} onClick={() => handleIncrement(item.id, item.quantity)}>+</button>
+                      </div>
+                </div>
                 <p>Price : ${item.price}</p>
                 <button onClick={() => handleAddToCart(item)}>
                   Add one more{" "}
@@ -58,10 +114,10 @@ export default function CartPage() {
         <form onSubmit={handleSubmit(handleDiscountSubmit)} className={s.form}>
           <div>
             <h3>Order details</h3>
-            <h3>3 items</h3>
+            <h3>{totalCount} items</h3>
             <div>
               <h3>Total</h3>
-              <span>$200</span>
+              <span>${totalPrice}</span>
             </div>
           </div>
           <div className={s.labels}>
