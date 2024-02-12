@@ -10,6 +10,7 @@ import { getRelatedProducts } from "../../features/products/productsSlice";
 // import {  useGetProductsQuery } from '../../features/api/apiSlice';
 
 export default function SingleProductPage({ item, data }) {
+  
   // Состояние для хранения информации о том,  была ли кнопка нажата
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
@@ -25,11 +26,9 @@ export default function SingleProductPage({ item, data }) {
   };
 
   const { id } = useParams();
-
   const dispatch = useDispatch();
-
   const { details, isLoading } = useSelector((state) => state.singleProduct);
-  // console.log("details  ....", details);
+
 
   //cart
   const [quantity, setQuantity] = useState(1);
@@ -51,9 +50,9 @@ export default function SingleProductPage({ item, data }) {
   }
 
   const addToCart = () => {
-    dispatch(addItemToCart({ ...data, quantity: quantity }));
+    dispatch(addItemToCart({ ...details[0], quantity: quantity}));
   };
-
+console.log('details...', details)
   const handleDecrement = () => {
     // Уменьшаем количество товара на 1
     if (quantity > 1) {
@@ -67,9 +66,6 @@ export default function SingleProductPage({ item, data }) {
   };
 
   //-----
- 
-
-
 
   return (
     <>
