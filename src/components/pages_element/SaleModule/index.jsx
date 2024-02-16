@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import s from "./SaleModule.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AllProductsBtn from "../../UI/AllProductsBtn";
+import { addItemToCart } from "../../../features/user/userSlice";
 
 // import { fetchAllProducts } from "../../../asyncActions/products";
 import { Link } from "react-router-dom";
 import { ROOT_URL } from "../../..";
 
 export default function SaleModule({ showQuantitySaleItems, id }) {
-  const { list } = useSelector(({ products }) => products);
+  // const { list } = useSelector(({ products }) => products);
+  const {
+    products: { list },
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   let saleProducts = list.filter((item) => item.discont_price !== null); // []
 
@@ -34,6 +39,11 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
   //   setIsHovered(false);
   // };
 
+  const addToCart = (event, product) => {
+    event.stopPropagation();
+    dispatch(addItemToCart({ ...product }));
+  };
+
   return (
     <div className={`${s.wrapper} container`}>
       <div className={s.title_btn}>
@@ -42,48 +52,48 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
           <div className={s.category_line_container}>
             <div className={s.categories_line}></div>
             <Link to="/sales">
-              {" "}
               <AllProductsBtn buttonText="All sales" />
-            </Link>{" "}
+            </Link>
           </div>
         )}
       </div>
 
       <div className={s.category_container}>
         {saleProducts.map((product) => (
-          <Link
-            to={`/products/${product.id}`}
+          <div
+            className={s.category_wrapper}
             key={`${product.id}`}
-            className={s.product}
+            // onMouseEnter={() => handleMouseEnter(id)}
+            // onMouseLeave={handleMouseLeave}
           >
-            <div
-              className={s.category_wrapper}
-              key={`${product.id}`}
-              // onMouseEnter={() => handleMouseEnter(id)}
-              // onMouseLeave={handleMouseLeave}
-            >
-              <div className={s.image_container}>
-                <img
-                  className={s.category_img}
-                  src={`${ROOT_URL}${product.image}`}
-                  alt={`${product.title} || ${product.id}`}
-                />
-                <button
-                  className={s.addToCartButton}
-                >
-                  Add to Cart
-                </button>
-                <span className={s.discount_label}>
-                  {`- ${(
-                    (1 - product.discont_price / product.price) *
-                    100
-                  ).toFixed(0)}%`}
-                </span>
-              </div>
+            <div className={s.image_container}>
+              <img
+                className={s.category_img}
+                src={`${ROOT_URL}${product.image}`}
+                alt={`${product.title} || ${product.id}`}
+              />
+              <button
+                className={s.addToCartButton}
+                onClick={(event) => addToCart(event, product)}
+              >
+                Add to Cart
+              </button>
+              <span className={s.discount_label}>
+                {`- ${(
+                  (1 - product.discont_price / product.price) *
+                  100
+                ).toFixed(0)}%`}
+              </span>
+            </div>
 
+            <Link
+              to={`/products/${product.id}`}
+              key={`${product.id}`}
+              className={s.product}
+            >
               <div className={s.content_wrapper}>
                 <p className={s.category_title} title={`${product.title}`}>
-                  {`${product.title}`}{" "}
+                  {`${product.title}`}
                 </p>
                 <div className={s.price}>
                   <span
@@ -94,8 +104,8 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
                   >{`$${product.price}`}</span>
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
     </div>

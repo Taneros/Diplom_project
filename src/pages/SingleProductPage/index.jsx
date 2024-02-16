@@ -21,14 +21,17 @@ export default function SingleProductPage({ item, data }) {
   //Для скрытия текста
   const [showFullDescription, setShowFullDescription] = useState(false);
   const maxCharacters = 200; // Максимальное количество символов в коротком описании
+ 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
 
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const { details, isLoading } = useSelector((state) => state.singleProduct);
 
+  console.log(`SingleProductPage/index.jsx - line: 34 ->> details`, details )
 
   //cart
   const [quantity, setQuantity] = useState(1);
@@ -53,7 +56,6 @@ export default function SingleProductPage({ item, data }) {
     dispatch(addItemToCart({ ...details[0], quantity: quantity}));
   };
   
-console.log('details...', details)
 
   // const handleDecrement = () => {
   //   // Уменьшаем количество товара на 1

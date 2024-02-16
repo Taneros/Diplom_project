@@ -7,8 +7,14 @@ import categoryProductsSlice from "./categoryProducts/categoryProductsSlice";
 import userSlice from "./user/userSlice";
 
 
-// import { type } from "@testing-library/user-event/dist/type";
-// import { apiSlice } from "./api/apiSlice";
+
+// Middleware для сохранения состояния в localStorage
+// const saveToLocalStorage = store => next => action => {
+//     const result = next(action);
+//     localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+//     return result;
+//   };
+
 
 export const store = configureStore({
     reducer: {
@@ -17,13 +23,6 @@ export const store = configureStore({
         singleProduct: apiSlice,
         user: userSlice,
         categoryProducts: categoryProductsSlice,
-        // checkbox: checkboxSlice,
-        // getRelatedProducts: getRelatedProducts ,
-        //  [apiSlice.reducerPath]: apiSlice.reducer,
     },
-    // //  middleware: (getMiddleware) => getMiddleware().concat(apiSlice.middleware(type)),
-    // middleware: (getDefaultMiddleware) =>
-    // getDefaultMiddleware().concat(apiSlice.middleware),
-    
-    // devTools: true,
+    // middleware: [...getDefaultMiddleware(), saveToLocalStorage]
 })
