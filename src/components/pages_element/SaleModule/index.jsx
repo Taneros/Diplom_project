@@ -6,15 +6,15 @@ import AllProductsBtn from "../../UI/AllProductsBtn";
 import { addItemToCart } from "../../../features/user/userSlice";
 
 // import { fetchAllProducts } from "../../../asyncActions/products";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROOT_URL } from "../../..";
 
 export default function SaleModule({ showQuantitySaleItems, id }) {
-  // const { list } = useSelector(({ products }) => products);
-  const {
-    products: { list },
-  } = useSelector((state) => state);
+  const { list } = useSelector(({ products }) => products);
+
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   let saleProducts = list.filter((item) => item.discont_price !== null); // []
 
@@ -30,18 +30,13 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
       .slice(0, showQuantitySaleItems);
   }
 
-  //button hover
-  // const [isHovered, setIsHovered] = useState(null);
-  // const handleMouseEnter = (id) => {
-  //   setIsHovered(id);
-  // };
-  // const handleMouseLeave = () => {
-  //   setIsHovered(false);
-  // };
-
-  const addToCart = (event, product) => {
+  const handleAddToCart = (event, product) => {
     event.stopPropagation();
     dispatch(addItemToCart({ ...product }));
+  };
+
+  const handleClickCard = (id) => {
+    navigate(`/products/${id}`);
   };
 
   return (
@@ -61,10 +56,9 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
       <div className={s.category_container}>
         {saleProducts.map((product) => (
           <div
+            onClick={() => handleClickCard(product.id)}
             className={s.category_wrapper}
             key={`${product.id}`}
-            // onMouseEnter={() => handleMouseEnter(id)}
-            // onMouseLeave={handleMouseLeave}
           >
             <div className={s.image_container}>
               <img
@@ -74,7 +68,7 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
               />
               <button
                 className={s.addToCartButton}
-                onClick={(event) => addToCart(event, product)}
+                onClick={(event) => handleAddToCart(event, product)}
               >
                 Add to Cart
               </button>
@@ -86,25 +80,17 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
               </span>
             </div>
 
-            <Link
-              to={`/products/${product.id}`}
-              key={`${product.id}`}
-              className={s.product}
-            >
-              <div className={s.content_wrapper}>
-                <p className={s.category_title} title={`${product.title}`}>
-                  {`${product.title}`}
-                </p>
-                <div className={s.price}>
-                  <span
-                    className={s.discounted_price}
-                  >{`$${product.discont_price} `}</span>
-                  <span
-                    className={s.original_price}
-                  >{`$${product.price}`}</span>
-                </div>
+            <div className={s.content_wrapper}>
+              <p className={s.category_title} title={`${product.title}`}>
+                {`${product.title}`}
+              </p>
+              <div className={s.price}>
+                <span
+                  className={s.discounted_price}
+                >{`$${product.discont_price} `}</span>
+                <span className={s.original_price}>{`$${product.price}`}</span>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
