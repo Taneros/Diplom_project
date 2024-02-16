@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 //   fetchCategoryProducts,
 // } from "../../asyncActions/products";
 import s from "./ProductsPageByCategory.module.css";
-import AllProducts from "../../components/pages_element/AllProducts";
+import ProductItem from "../../components/pages_element/ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FilterPanel from "../../components/pages_element/FilterPanel";
@@ -28,7 +28,6 @@ export default function ProductsPageByCategory() {
     dispatch(getCategoryProducts(id));
   }, [dispatch, id]);
 
-
   if (!list.category || loading) {
     return <div> Loading ... </div>;
   }
@@ -37,19 +36,19 @@ export default function ProductsPageByCategory() {
 
   return (
     <>
-        <div className={`${s.wrapper} container`}>
-          <FilterPanel />
+      <div className={`${s.wrapper} container`}>
+        <FilterPanel />
 
-          <h2>{category.title}</h2>
+        <h2>{category.title}</h2>
 
-          <div className={s.category_container}>
-            {data.length > 0 &&
-              data.map((elem) => (
-                <AllProducts data={elem} key={elem.id + elem.title} />
-              ))}
-            {data.length === 0 && <div>Sorry no products</div>}
-          </div>
+        <div className={s.category_container}>
+          {data.length > 0 &&
+            data.map((elem) => (
+              <ProductItem data={elem} key={elem.id + elem.title} />
+            ))}
+          {data.length === 0 && <div>Sorry no products</div>}
         </div>
+      </div>
     </>
   );
 }
