@@ -3,6 +3,8 @@ import './App.css';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
+import { useTransform, motion, useViewportScroll } from 'framer-motion'
+
 import Footer from './components/global/Foot';
 import Header from './components/global/Head';
 import { Routes, Route } from 'react-router-dom'
@@ -12,7 +14,7 @@ import CategoriesPage from './pages/CategoriesPage';
 import SingleProductPage from './pages/SingleProductPage';
 import ProductsPage from './pages/ProductsPage';
 import CartPage from './pages/CartPage';
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/NotFound';
 import AllSales from './pages/AllSales';
 
 import { getCategories } from './features/categories/categoriesSlice';

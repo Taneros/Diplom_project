@@ -23,6 +23,10 @@ const categoriesSlice = createSlice({
   initialState: {
     list: [],
     isLoading: false,
+    // related: [],
+    // isLoading: false,
+    // minPrice: '',
+    // maxPrice: '',
   },
   extraReducers: (builder) => {
     builder.addCase(getCategories.pending, (state) => {

@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <div className='container'>
       <div className={s.contact_wrapper}>
-        <h2 className={s.footer_title}>Contacts</h2>
+        <h2 className={s.footer_title}>Contact</h2>
         <div className={s.constact_module_wrap}>
           <div className={s.phone_form}>
             <p className={s.contact_texts}>Phone</p>

@@ -43,3 +43,19 @@ h1{
 .btn:hover{
     background-color: #000000;
 }
+
+
+@media (max-width: 480px) {
+    .wrapper{
+        width: 480px;
+        height: 600px;
+    }
+    h1{
+        font-size: 52px;
+    }
+}
+@media (max-width: 360px){
+    .wrapper{
+        width: 360px;
+    }
+}

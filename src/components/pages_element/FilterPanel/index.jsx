@@ -27,17 +27,17 @@ export default function FilterPanel({ onCheckboxChange, onOptionChange,maxPrice,
       <div className={s.filter_wrapper}>
         <div className={s.price_filter}>
           <span>Price</span>
-          <form >
+          <form className={s.filter__form} >
           <input 
               placeholder="from" 
-              type="text"  
+              type="number"  
               value={minPrice}
               onChange={ handleMinPriceChange}
               onKeyDown={handleEnterKeyDown}
             />
           <input 
               placeholder="to" 
-              type="text" 
+              type="number" 
               value={maxPrice}
               onChange={ handleMaxPriceChange }
               onKeyDown={handleEnterKeyDown}

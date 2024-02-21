@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import categoriesSlice from "./categories/categoriesSlice";
 import productsSlice from "./products/productsSlice";
@@ -6,23 +6,50 @@ import apiSlice from "./api/apiSlice";
 import categoryProductsSlice from "./categoryProducts/categoryProductsSlice";
 import userSlice from "./user/userSlice";
 
+import { 
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+    } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' 
 
-
-// Middleware для сохранения состояния в localStorage
+//localStorage
 // const saveToLocalStorage = store => next => action => {
 //     const result = next(action);
 //     localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 //     return result;
 //   };
-
-
-export const store = configureStore({
-    reducer: {
-        categories: categoriesSlice,
-        products: productsSlice,
-        singleProduct: apiSlice,
-        user: userSlice,
-        categoryProducts: categoryProductsSlice,
-    },
-    // middleware: [...getDefaultMiddleware(), saveToLocalStorage]
+const rootReducer = combineReducers({ 
+    user: userSlice,
+    categories: categoriesSlice,
+    products: productsSlice,
+    singleProduct: apiSlice,
+    categoryProducts: categoryProductsSlice,
 })
+
+const persistConfig = {
+    key: 'root',
+    storage,
+  }
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+
+const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+
+   
+})
+export const persistor = persistStore(store)
+export default store;

@@ -26,7 +26,7 @@ export default function DiscountForm() {
 
         <div className={s.discount_wrapper}>
           <img src={image} alt="discount" />
-          <div>
+          <div className={s.wrapper__form}>
        
             <form
               className={s.form}
@@ -83,6 +83,9 @@ export default function DiscountForm() {
               {/* <p className={s.form__end}>{isSubmitSuccessful && 'Thank you!'  }</p> */}
             </form>
           </div>
+        </div>
+        <div className={s.background__image}>
+        <img src={image} alt="discount" />
         </div>
       </div>
     </div>

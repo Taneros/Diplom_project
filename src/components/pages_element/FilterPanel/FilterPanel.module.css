@@ -8,6 +8,10 @@
 .price_filter{
     width: 309px;       
 }
+.filter__form{
+  display: flex;
+  gap: 16px;
+}
 .price_filter,
 .checkbox,
 .sorter,

@@ -17,3 +17,17 @@ input:focus {
   -webkit-appearance: none;  
   box-shadow: none !important  
 }
+
+@media (max-width: 480px) {
+  .container{
+    margin: 0 auto;
+   max-width: 440px;
+  }
+}
+
+@media (max-width: 360px){
+  .container{
+    max-width:320px ;
+    margin: 0 auto;
+  }
+}

@@ -22,7 +22,7 @@ import {
 } from "../../features/products/productsSlice";
 
 export default function ProductsPage() {
-  const { list } = useSelector(({ products }) => products);
+  const { list, filtered } = useSelector(({ products }) => products);
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const [selectedOption, setSelectedOption] = useState("by default");
@@ -30,8 +30,8 @@ export default function ProductsPage() {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
-  const filteredList = isChecked
-    ? list.filter((item) => item.discont_price !== null)
+  const filteredList = isChecked  
+  ? list.filter((item) => item.discont_price !== null)
     : list;
 
   //sorted
@@ -67,9 +67,12 @@ export default function ProductsPage() {
 
   return (
     <div className={`${s.wrapper} container`}>
-      <h2>All products</h2>
-
-      <FilterPanel
+     
+<div className={s.title}>     
+   
+       <h2>All products</h2>
+       </div>
+       <FilterPanel
         onCheckboxChange={handleCheckboxChange}
         onOptionChange={handleOptionChange}
         handleMinPriceChange={handleMinPriceChange}
@@ -77,6 +80,7 @@ export default function ProductsPage() {
         minPrice={minPrice}
         maxPrice={maxPrice}
       />
+      
       <div className={s.category_container}>
         {filteredList.length > 0 &&
           filteredList.map((elem) => (

@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-
-// import {
-//   fetchAllProducts,
-//   fetchCategoryProducts,
-// } from "../../asyncActions/products";
 import s from "./ProductsPageByCategory.module.css";
 import ProductItem from "../../components/pages_element/ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FilterPanel from "../../components/pages_element/FilterPanel";
 import { getCategoryProducts } from "../../features/categoryProducts/categoryProductsSlice.js";
+
 
 export default function ProductsPageByCategory() {
   const { id } = useParams();
@@ -34,12 +28,19 @@ export default function ProductsPageByCategory() {
 
   const { category, data } = list;
 
+
+  //-----filter
+  
   return (
     <>
       <div className={`${s.wrapper} container`}>
-        <FilterPanel />
+      <div className={s.title}>
+             <FilterPanel />
+      
+          <h2>{category.title}</h2>
+        </div>
 
-        <h2>{category.title}</h2>
+      
 
         <div className={s.category_container}>
           {data.length > 0 &&

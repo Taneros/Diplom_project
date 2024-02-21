@@ -145,9 +145,11 @@ const handleDeleteProduct = ( itemId ) => {
           </div>
       </div>
       {cart.length === 0 && (
- <div>
+ <div className={s.continue__wrapper}>
  <p>Looks like you have no items in your basket currently.</p>
- <button>Continue Shopping</button>
+ <Link to='/'>
+ <button className={s.continue__btn}>Continue Shopping</button>
+ </Link>
 </div>
 
       )}

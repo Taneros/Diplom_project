@@ -94,6 +94,11 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
           </div>
         ))}
       </div>
+      <div className={s.btn__media}>
+        <Link to="/sales">
+          <AllProductsBtn buttonText="All sales" />
+        </Link>
+      </div>
     </div>
   );
 }
