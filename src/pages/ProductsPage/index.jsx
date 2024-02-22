@@ -14,6 +14,7 @@ import FilterPanel from "../../components/pages_element/FilterPanel";
 import {
   filterByPrice,
   filterByPriceRange,
+  filterFromTo,
   setMaxPrice,
   setMinPrice,
   sortByDate,
@@ -65,6 +66,12 @@ export default function ProductsPage() {
     dispatch(filterByPriceRange());
   };
 
+  const handleFromToPrice = (priceFrom, priceTo) => {
+    const from = parseFloat(priceFrom);
+    const to = parseFloat(priceTo);
+    dispatch(filterFromTo({ from, to }));
+  };
+  
   return (
     <div className={`${s.wrapper} container`}>
      
@@ -79,6 +86,8 @@ export default function ProductsPage() {
         handleMaxPriceChange={handleMaxPriceChange}
         minPrice={minPrice}
         maxPrice={maxPrice}
+
+        handleFromToPrice={(priceTo , priceFrom ) => handleFromToPrice(priceTo , priceFrom )}
       />
       
       <div className={s.category_container}>

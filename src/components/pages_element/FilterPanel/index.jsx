@@ -6,7 +6,15 @@ import { filterByPriceRange, setMaxPrice, setMinPrice } from "../../../features/
 
 
 
-export default function FilterPanel({ onCheckboxChange, onOptionChange,maxPrice, minPrice,handleMaxPriceChange, handleMinPriceChange}) {
+export default function FilterPanel({
+   onCheckboxChange,
+    onOptionChange,
+    maxPrice, 
+    minPrice,
+    handleMaxPriceChange,
+     handleMinPriceChange, 
+     handleFromToPrice
+    }) {
 
 
 
@@ -14,6 +22,8 @@ export default function FilterPanel({ onCheckboxChange, onOptionChange,maxPrice,
   const [selectedOption, setSelectedOption] = useState('by default');
 
   //filter from ..to
+
+
   const handleEnterKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -27,20 +37,22 @@ export default function FilterPanel({ onCheckboxChange, onOptionChange,maxPrice,
       <div className={s.filter_wrapper}>
         <div className={s.price_filter}>
           <span>Price</span>
-          <form className={s.filter__form} >
+          <form className={s.filter__form}  onSubmit={(e) => handleFromToPrice(e.target.elements.from.value, e.target.elements.to.value)}>
           <input 
+              name="from"
               placeholder="from" 
               type="number"  
-              value={minPrice}
-              onChange={ handleMinPriceChange}
-              onKeyDown={handleEnterKeyDown}
+              // value={priceFrom}
+              // onChange={ handleMinPriceChange}
+              // onKeyDown={handleEnterKeyDown}
             />
           <input 
+              name="to"
               placeholder="to" 
               type="number" 
-              value={maxPrice}
-              onChange={ handleMaxPriceChange }
-              onKeyDown={handleEnterKeyDown}
+              // value={priceTo}
+              // onChange={ handleMaxPriceChange }
+              // onKeyDown={handleEnterKeyDown}
              />
              </form>
         </div>

@@ -57,25 +57,6 @@ export default function SingleProductPage({ item, data }) {
   };
   
 
-  // const handleDecrement = () => {
-  //   // Уменьшаем количество товара на 1
-  //   if (quantity > 1) {
-  //    const newQuantity = quantity - 1;
-  //    setQuantity(newQuantity)
-  //     dispatch(updateCartItemQuantity({ id: item.id, quantity: newQuantity }));
-  //   }
-  // };
-
-  // const handleIncrement = () => {
-  //   // Увеличиваем количество товара на 1
-  //   if (details && details.length > 0) {
-  //     const productId = details[0].id;
-  //     const newQuantity = quantity + 1;
-  //     setQuantity(newQuantity);
-  //     dispatch(updateCartItemQuantity({ id: productId, quantity: newQuantity}));
-  //   }
-  // };
-
 
 
   const handleDecrement = () => {
@@ -98,11 +79,11 @@ export default function SingleProductPage({ item, data }) {
           {details.map(
             ({ id, title, description, price, image, discont_price }) => (
               <div key={id} className={s.wrapper}>
-                <div>
+                <div className={s.image}>
                   <img src={ROOT_URL + image} alt={title} className={s.image} />
                 </div>
-                <section>
-                  <div className={s.price__container}>
+                {/* <section> */}
+                  {/* <div className={s.price__container}> */}
                     <h2 className={s.title}>{title}</h2>
                     <div className={s.price}>
                       {discont_price !== null ? (
@@ -152,8 +133,8 @@ export default function SingleProductPage({ item, data }) {
                         </button>
                       )}
                     </div>
-                  </div>
-                </section>
+                  {/* </div> */}
+                {/* </section> */}
               </div>
             )
           )}

@@ -46,6 +46,13 @@ const productsSlice = createSlice({
       }) => action.payload ? discont_price !== null : true) //filter by price
     },
 
+    //from to
+
+    filterFromTo: (state, action) => {
+      const { from, to } = action.payload
+      state.filtered = state.list.filter(el => el.price >= from && el.price <= to  )
+    },
+//-------
     sortByDate: (state) => {
       state.list.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
     },
@@ -116,7 +123,8 @@ export const {
   sortByLowHighPrice,
   filterByPriceRange,
   setMaxPrice,
-  setMinPrice
+  setMinPrice,
+  filterFromTo,
 } = productsSlice.actions
 
 export default productsSlice.reducer

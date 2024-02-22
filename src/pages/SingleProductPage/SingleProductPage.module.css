@@ -1,4 +1,4 @@
-.wrapper{
+/* .wrapper{
     display: flex;
     gap: 32px;
     text-align: start;
@@ -16,11 +16,65 @@
     flex-direction: column;
     gap: 32px;
     
+} */
+
+
+
+
+.image{
+    grid-area: img;
 }
+.title{
+    grid-area: title;
+}
+.price{
+    grid-area: price;
+}
+.counter__container{
+    grid-area: countBtn;
+}
+.description__wrapper{
+    grid-area: text;
+}
+
+.wrapper{
+    padding-top: 40px;
+    display: grid;
+    grid-template-areas:
+                'img title'
+                'img price'
+                'img countBtn'
+                'img text';
+    grid-template-rows: auto;
+    gap: 32px;
+    text-align: start;
+    font-family: 'Montserrat' ;
+}
+
+
+
+
+.image{
+    width: 780px;
+    height: 572px;
+    background-size: cover;
+    object-fit: cover;
+}
+/* .price__container{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    
+} */
+
+
+
+
 .discount_percent{
-position: absolute;
-top: .2rem;
-right: 14rem;
+/* position: absolute; */
+/* top: .2rem;
+right: 14rem; */
+transform: translate(-41px, -41px);
 width: 63px;
 height:34px ;
 background-color: #339933;
@@ -52,12 +106,13 @@ margin-left: 20px;
 .discount__wrapper{
     display: flex;
     gap: 32px;
-    align-items: center;
+    align-items: end;
     /* position: relative; */
 }
 .counter__container{
     display: flex;
     gap: 32px;
+    max-height: 58px;
 }
 .count__wrapper{
     display: flex;
@@ -142,7 +197,7 @@ margin-left: 20px;
     }
 }
 
-    .count_btn{
+.count_btn{
     background-color: #ffff;
 }
 .description__wrapper{
