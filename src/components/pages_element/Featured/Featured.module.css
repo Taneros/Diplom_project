@@ -45,9 +45,9 @@ h1{
 }
 
 
-@media (max-width: 480px) {
+@media screen and (min-width: 480px) and (max-width: 767px){
     .wrapper{
-        width: 480px;
+        width: 100%;
         height: 600px;
     }
     h1{

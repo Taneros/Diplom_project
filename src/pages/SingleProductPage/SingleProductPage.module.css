@@ -1,22 +1,3 @@
-/* .wrapper{
-    display: flex;
-    gap: 32px;
-    text-align: start;
-    font-family: 'Montserrat' ;
-}
-
-.image{
-    width: 780px;
-    height: 572px;
-    background-size: cover;
-    object-fit: cover;
-}
-.price__container{
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    
-} */
 
 
 
@@ -60,12 +41,6 @@
     background-size: cover;
     object-fit: cover;
 }
-/* .price__container{
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    
-} */
 
 
 
