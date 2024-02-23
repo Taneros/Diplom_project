@@ -190,7 +190,7 @@
         height: 44px;
         align-items: center;
         margin: 40px 0;
-        width: 100%;
+      width: 100%;
        justify-content: space-between;
        gap:16px;
     }
@@ -209,7 +209,7 @@
     }
   }
 
-  @media (max-width: 360px){
+  @media screen and (min-width: 340px) and (max-width: 478px){
     .title{
         font-size: 40px;
     }
@@ -225,13 +225,7 @@
         flex-direction: column;
         gap: 20px;
     }
-    /* .category_img{
-        width: 320px;
-        height: 220px;
-    } */
-    .category_wrapper{
-        height: 335px;
-    }
+
     .category_title{
         width:100%;
     }
