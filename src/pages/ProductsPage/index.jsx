@@ -8,14 +8,23 @@ import React, { useEffect, useState } from "react";
 // } from "../../asyncActions/products";
 import s from "./ProductsPage.module.css";
 import ProductItem from "../../components/pages_element/ProductItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FilterPanel from "../../components/pages_element/FilterPanel";
-import { selectFilteredProducts } from "../../features/products/productsSlice";
+import productsSlice, {
+  getProducts,
+  selectFilteredProducts,
+} from "../../features/products/productsSlice";
 
 export default function ProductsPage() {
   const productList = useSelector(selectFilteredProducts);
+  const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  // }, [dispatch]);
+
+  console.log("productList===", productList);
   return (
     <div className={`${s.wrapper} container`}>
       <div className={s.title}>
@@ -26,10 +35,7 @@ export default function ProductsPage() {
       <div className={s.category_container}>
         {productList.length > 0 &&
           productList.map((elem) => (
-            <ProductItem
-              data={elem}
-              key={elem.id + elem.title}
-            />
+            <ProductItem data={elem} key={elem.id + elem.title} />
           ))}
         {productList.length === 0 && <div>Sorry no products</div>}
       </div>

@@ -6,12 +6,11 @@ import { useParams } from "react-router-dom";
 import FilterPanel from "../../components/pages_element/FilterPanel";
 import { getCategoryProducts } from "../../features/categoryProducts/categoryProductsSlice.js";
 
-
 export default function ProductsPageByCategory() {
   const { id } = useParams();
 
   const { list, loading } = useSelector((state) => state.categoryProducts);
-
+  console.log("list==", list);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,19 +27,16 @@ export default function ProductsPageByCategory() {
 
   const { category, data } = list;
 
-
   //-----filter
-  
+
   return (
     <>
       <div className={`${s.wrapper} container`}>
-      <div className={s.title}>
-             <FilterPanel />
-      
+        <div className={s.title}>
+          <FilterPanel />
+
           <h2>{category.title}</h2>
         </div>
-
-      
 
         <div className={s.category_container}>
           {data.length > 0 &&

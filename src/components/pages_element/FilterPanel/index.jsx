@@ -8,8 +8,8 @@ import {
   setCategoryFilters,
   setPriceRangeFilter,
   setSorting,
-  // getRelatedProducts,
-  // selectFilteredProducts,
+  getRelatedProducts,
+  selectFilteredProducts,
 } from "../../../features/products/productsSlice";
 
 export default function FilterPanel() {
@@ -20,6 +20,7 @@ export default function FilterPanel() {
   const [sortingOption, setSortingOption] = useState("default");
   const [categoryFilter, setCategoryFilter] = useState(false);
 
+  //------
   // const handleSearchInputChange = (event) => {
   //   setSearchInput(event.target.value);
   // };

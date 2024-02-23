@@ -22,7 +22,7 @@ const productsSlice = createSlice({
   initialState: {
     list: [],
     filters: {
-      search: "",
+      // search: "",
       priceRange: { min: null, max: Infinity },
       category: false,
     },
@@ -58,6 +58,7 @@ const productsSlice = createSlice({
   },
 });
 
+//--
 export const selectFilteredProducts = (state) => {
   const { list, filters, sorting } = state.products;
 
@@ -66,25 +67,32 @@ export const selectFilteredProducts = (state) => {
     const priceB = b.discont_price !== null ? b.discont_price : b.price;
     return priceA - priceB;
   });
+  console.log("filteredProducts....", filteredProducts);
 
-  if (filters.search !== "") {
-    filteredProducts = filteredProducts.filter((product) =>
-      product.title.toLowerCase().includes(filters.search)
-    );
-  }
+  // if (filters.search !== "") {
+  //   filteredProducts = filteredProducts.filter((product) =>
+  //     product.title.toLowerCase().includes(filters.search)
+  //   );
+  // }
 
   if (filters.category) {
     filteredProducts = filteredProducts.filter((product) =>
       Boolean(product.discont_price)
     );
+    console.log("Filtered by category:", filteredProducts);
   }
 
-  if (filters.priceRange.min !== null || filters.priceRange.max !== null) {
+  if (
+    (filters.priceRange && filters.priceRange.min !== null) ||
+    filters.priceRange.max !== null
+  ) {
     filteredProducts = filteredProducts.filter(
       (product) =>
         product.price >= filters.priceRange.min &&
         product.price <= filters.priceRange.max
     );
+
+    console.log("Filtered by price range:", filteredProducts);
   }
 
   if (sorting === "newest") {
@@ -104,6 +112,8 @@ export const selectFilteredProducts = (state) => {
       return priceA - priceB;
     });
   }
+
+  console.log("filteredProducts===", filteredProducts);
 
   return filteredProducts;
 };
