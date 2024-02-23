@@ -1,112 +1,55 @@
-import {
-  createAsyncThunk,
-  createSlice
-} from "@reduxjs/toolkit"
-import {
-  ROOT_URL
-} from "../..";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ROOT_URL } from "../..";
 import axios from "axios";
-import {
-  shuffle
-} from "../../utils/common";
+import { shuffle } from "../../utils/common";
 
-
-export const getProducts = createAsyncThunk('products/getProducts',
+export const getProducts = createAsyncThunk(
+  "products/getProducts",
   async (_, thunAPI) => {
     try {
       const res = await axios(`${ROOT_URL}/products/all`);
-      console.log(res)
-      return res.data
+      console.log(res);
+      return res.data;
     } catch (error) {
       console.log(error);
-      return thunAPI.rejectWithValue(error)
+      return thunAPI.rejectWithValue(error);
     }
   }
 );
 
 const productsSlice = createSlice({
-  name: 'categories',
+  name: "categories", // change to products???
   initialState: {
     list: [],
-    filtered: [],
     filters: {
-      hasDiscount: null,
-      sorted: null,
+      search: "",
+      priceRange: { min: null, max: Infinity },
+      category: false,
     },
-    related: [],
+    sorting: "default",
     isLoading: false,
-    minPrice: '',
-    maxPrice: '',
   },
   reducers: {
-    filterByPrice: (state, action) => {
-      state.filters.hasDiscount = action.payload;
-      state.filtered = state.filtered.filter(({
-        discont_price
-      }) => action.payload ? discont_price !== null : true) //filter by price
+    setSearchFilter: (state, action) => {
+      state.filters.search = action.payload.trim().toLowerCase();
     },
 
-    //from to
-
-    filterFromTo: (state, action) => {
-      const { from, to } = action.payload
-      state.filtered = state.list.filter(el => el.price >= from && el.price <= to  )
+    setPriceRangeFilter: (state, action) => {
+      state.filters.priceRange = action.payload;
     },
-//-------
-    sortByDate: (state) => {
-      state.list.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    setSorting: (state, action) => {
+      state.sorting = action.payload;
     },
-
-    sortByHighLowPrice: (state) => {
-      state.list.sort((a, b) => {
-        const priceA = a.discont_price !== null ? a.discont_price : a.price;
-        const priceB = b.discont_price !== null ? b.discont_price : b.price;
-        return priceB - priceA;
-      });
-    },
-
-    sortByLowHighPrice: (state) => {
-      state.list.sort((a, b) => {
-        const priceA = a.discont_price !== null ? a.discont_price : a.price;
-        const priceB = b.discont_price !== null ? b.discont_price : b.price;
-        return priceA - priceB;
-      });
-    },
-    setMinPrice: (state, action) => {
-      state.minPrice = action.payload;
-    },
-    setMaxPrice: (state, action) => {
-      state.maxPrice = action.payload;
-    },
-    filterByPriceRange: (state) => {
-      state.filtered = state.list.filter((item) => {
-        const price = item.discont_price !== null ? item.discont_price : item.price;
-        const min = state.minPrice !== '' ? parseFloat(state.minPrice) : Number.NEGATIVE_INFINITY;
-        const max = state.maxPrice !== '' ? parseFloat(state.maxPrice) : Number.POSITIVE_INFINITY;
-        return price >= min && price <= max;
-      })
-    },
-
-    getRelatedProducts: (state, {
-      payload
-    }) => {
-      const list = state.list.filter(({
-        category: {
-          id
-        }
-      }) => id === payload)
-      state.related = shuffle(list) //in common file
+    setCategoryFilters: (state, action) => {
+      state.filters.category = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getProducts.fulfilled, (state, {
-      payload
-    }) => {
+    builder.addCase(getProducts.fulfilled, (state, { payload }) => {
       state.list = payload;
-      state.filtered = payload;
       state.isLoading = false;
     });
     builder.addCase(getProducts.rejected, (state) => {
@@ -115,16 +58,63 @@ const productsSlice = createSlice({
   },
 });
 
-export const {
-  filterByPrice,
-  getRelatedProducts,
-  sortByDate,
-  sortByHighLowPrice,
-  sortByLowHighPrice,
-  filterByPriceRange,
-  setMaxPrice,
-  setMinPrice,
-  filterFromTo,
-} = productsSlice.actions
+export const selectFilteredProducts = (state) => {
+  const { list, filters, sorting } = state.products;
 
-export default productsSlice.reducer
+  let filteredProducts = [...list].sort((a, b) => {
+    const priceA = a.discont_price !== null ? a.discont_price : a.price;
+    const priceB = b.discont_price !== null ? b.discont_price : b.price;
+    return priceA - priceB;
+  });
+
+  if (filters.search !== "") {
+    filteredProducts = filteredProducts.filter((product) =>
+      product.title.toLowerCase().includes(filters.search)
+    );
+  }
+
+  if (filters.category) {
+    filteredProducts = filteredProducts.filter((product) =>
+      Boolean(product.discont_price)
+    );
+  }
+
+  if (filters.priceRange.min !== null || filters.priceRange.max !== null) {
+    filteredProducts = filteredProducts.filter(
+      (product) =>
+        product.price >= filters.priceRange.min &&
+        product.price <= filters.priceRange.max
+    );
+  }
+
+  if (sorting === "newest") {
+    filteredProducts.sort(
+      (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+    );
+  } else if (sorting === "price-high-low") {
+    filteredProducts.sort((a, b) => {
+      const priceA = a.discont_price !== null ? a.discont_price : a.price;
+      const priceB = b.discont_price !== null ? b.discont_price : b.price;
+      return priceB - priceA;
+    });
+  } else if (sorting === "price-low-high") {
+    filteredProducts.sort((a, b) => {
+      const priceA = a.discont_price !== null ? a.discont_price : a.price;
+      const priceB = b.discont_price !== null ? b.discont_price : b.price;
+      return priceA - priceB;
+    });
+  }
+
+  return filteredProducts;
+};
+
+export const {
+  setSearchFilter,
+  toggleCategoryFilter,
+  setCategoryFilters,
+  setPriceRangeFilter,
+  setSorting,
+  getRelatedProducts,
+} = productsSlice.actions;
+
+export default productsSlice.reducer;

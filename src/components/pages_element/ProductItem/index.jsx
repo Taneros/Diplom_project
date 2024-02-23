@@ -6,9 +6,10 @@ import { ROOT_URL } from "../../..";
 import { getRelatedProducts } from "../../../features/products/productsSlice";
 import { addItemToCart } from "../../../features/user/userSlice";
 
-export default function ProductItem({
-  data: { id, title, image, price, discont_price },
-}) {
+export default function ProductItem({ data }) {
+  
+const { id,title,image, price, discont_price } = data;
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

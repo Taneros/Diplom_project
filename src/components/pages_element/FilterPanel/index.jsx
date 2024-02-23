@@ -1,78 +1,110 @@
 import React, { useState } from "react";
 import s from "./FilterPanel.module.css";
 import { BsChevronDown } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
-import { filterByPriceRange, setMaxPrice, setMinPrice } from "../../../features/products/productsSlice";
+import { useDispatch } from "react-redux";
 
+import {
+  // setSearchFilter,
+  setCategoryFilters,
+  setPriceRangeFilter,
+  setSorting,
+  // getRelatedProducts,
+  // selectFilteredProducts,
+} from "../../../features/products/productsSlice";
 
+export default function FilterPanel() {
+  const dispatch = useDispatch();
 
-export default function FilterPanel({
-   onCheckboxChange,
-    onOptionChange,
-    maxPrice, 
-    minPrice,
-    handleMaxPriceChange,
-     handleMinPriceChange, 
-     handleFromToPrice
-    }) {
+  // const [searchInput, setSearchInput] = useState('');
+  const [priceRange, setPriceRange] = useState({ min: null, max: Infinity });
+  const [sortingOption, setSortingOption] = useState("default");
+  const [categoryFilter, setCategoryFilter] = useState(false);
 
+  // const handleSearchInputChange = (event) => {
+  //   setSearchInput(event.target.value);
+  // };
 
+  // const handleSearch = () => {
+  //   dispatch(setSearchFilter(searchInput));
+  // };
 
-    // const { list } = useSelector(({ products }) => products )
-  const [selectedOption, setSelectedOption] = useState('by default');
-
-  //filter from ..to
-
-
-  const handleEnterKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
+  const handleCategoryToggle = () => {
+    setCategoryFilter(!categoryFilter);
+    dispatch(setCategoryFilters(!categoryFilter));
   };
 
-// console.log("isSelected", isSelected)
+  const handleRangeChange = (event) => {
+    const { name, value } = event.target;
+    setPriceRange({ ...priceRange, [name]: value ? Number(value) : null });
+
+    const { min, max } = {
+      ...priceRange,
+      [name]: value ? Number(value) : null,
+    };
+
+    dispatch(
+      setPriceRangeFilter({
+        min: min ? Number(min) : null,
+        max: max ? Number(max) : Infinity,
+      })
+    );
+  };
+
+  const handleSortingChange = (event) => {
+    setSortingOption(event.target.value);
+    dispatch(setSorting(event.target.value));
+  };
+
+  // uncontrolled
+  // useRef() bad practice
+  //
 
   return (
     <div className="container">
       <div className={s.filter_wrapper}>
         <div className={s.price_filter}>
           <span>Price</span>
-          <form className={s.filter__form}  onSubmit={(e) => handleFromToPrice(e.target.elements.from.value, e.target.elements.to.value)}>
-          <input 
-              name="from"
-              placeholder="from" 
-              type="number"  
-              // value={priceFrom}
-              // onChange={ handleMinPriceChange}
-              // onKeyDown={handleEnterKeyDown}
+          <form className={s.filter__form}>
+            <input
+              type="number"
+              name="min"
+              value={priceRange.min}
+              onChange={handleRangeChange}
+              placeholder="from"
             />
-          <input 
-              name="to"
-              placeholder="to" 
-              type="number" 
-              // value={priceTo}
-              // onChange={ handleMaxPriceChange }
-              // onKeyDown={handleEnterKeyDown}
-             />
-             </form>
+            <input
+              type="number"
+              name="max"
+              value={priceRange.max}
+              onChange={handleRangeChange}
+              placeholder="to"
+            />
+          </form>
         </div>
         <div className={s.checkbox}>
           <span>Discounted items</span>
-           <label className={`${s.checkbox} ${s.style_c}`} >
-            <input type="checkbox"  onClick={onCheckboxChange}/>
-            <div className={s.checkbox__checkmark} ></div>
+          <label className={`${s.checkbox} ${s.style_c}`}>
+            <input
+              type="checkbox"
+              checked={categoryFilter}
+              onClick={handleCategoryToggle}
+            />
+            <div className={s.checkbox__checkmark}></div>
           </label>
         </div>
         <div className={s.sorter}>
-          
           <span>Sorted</span>
-          <select className={s.select_sorter} onChange={(e) => onOptionChange(e.target.value)}>
-            <option>by default</option>
-            <option>newest</option>
-            <option>price: high-low</option>
-            <option>price: low-high</option>
+          <select
+            className={s.select_sorter}
+            value={sortingOption}
+            onChange={handleSortingChange}
+          >
+            <option value="default">by default</option>
+            <option value="newest">newest</option>
+            <option value="price-high-low">price: high-low</option>
+            <option value="price-low-high">price: low-high</option>
           </select>
-          <BsChevronDown className={s.sorter__check}/>
+          <BsChevronDown className={s.sorter__check} />
         </div>
       </div>
     </div>

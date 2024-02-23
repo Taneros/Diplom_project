@@ -5,7 +5,7 @@ import Categories from "../../components/pages_element/Categories";
 import DiscountForm from "../../components/pages_element/DiscountForm";
 import SaleModule from "../../components/pages_element/SaleModule";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByPrice } from "../../features/products/productsSlice";
+import { setPriceRangeFilter } from "../../features/products/productsSlice";
 
 export default function MainPage() {
   
@@ -17,7 +17,7 @@ export default function MainPage() {
   const {products: { list, filtered }, categories } = useSelector((state) => state)
   useEffect(() => {
     if(!list.length) return
-    dispatch(filterByPrice(100));
+    dispatch(setPriceRangeFilter({ min: 0, max: 100 }));
   }, [dispatch, list.length]);
 
   const saleRef = useRef(null);
@@ -27,7 +27,6 @@ export default function MainPage() {
       saleRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
 
   return (
     <div>
