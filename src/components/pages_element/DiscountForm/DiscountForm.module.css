@@ -26,7 +26,7 @@
 }
 img{
     width: 748px;
-    height: 360px;
+    /* height: 360px; */
 }
 .form{
     display: flex;
@@ -37,7 +37,7 @@ img{
 
 }
 
-.form>label>input{
+.form > label > input{
     font-family: Montserrat;
     font-size: 20px;
     font-style: normal;
@@ -52,28 +52,46 @@ img{
     color: #FFF;
 
     transition: border 0.3s ease;
+
+
 }
-.form>input::placeholder {
+
+/* .form > input::placeholder {
+    color: #fff; 
+  } */
+  input::placeholder {
     color: #fff; 
   }
-  .form>input:hover,
-  .form>input:focus{
+  .form > input:hover,
+  .form > input:focus{
     border-color: #FFF; 
 }
 
-.form>input:focus {
+.form > input:focus {
      outline: none; 
 }
 /* label{
     outline: none !important;
     background: transparent;
 } */
-.form__par{
+/* .form__par{
     color: red;
     font-size: 12px;
     padding: 0;
     margin: 0;
     text-align: end;
+} */
+label {
+    position: relative;
+}
+.error__message{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 14px;
+    color: red;
+    margin-top: 4px;
+
 }
 .button{
     width: 516px;
@@ -96,6 +114,12 @@ img{
     background-color: #000000;
     color: white;
 }
+.added,
+.added:hover{
+    background-color: white;
+    color: #0B710B;
+}
+
 .form__end{
     color: #FFF;
     font-size: 16px;

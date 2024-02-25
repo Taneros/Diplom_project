@@ -12,7 +12,7 @@ import {
   selectFilteredProducts,
 } from "../../../features/products/productsSlice";
 
-export default function FilterPanel() {
+export default function FilterPanel({ hideCheckbox }) {
   const dispatch = useDispatch();
 
   // const [searchInput, setSearchInput] = useState('');
@@ -82,17 +82,19 @@ export default function FilterPanel() {
             />
           </form>
         </div>
-        <div className={s.checkbox}>
-          <span>Discounted items</span>
-          <label className={`${s.checkbox} ${s.style_c}`}>
-            <input
-              type="checkbox"
-              checked={categoryFilter}
-              onClick={handleCategoryToggle}
-            />
-            <div className={s.checkbox__checkmark}></div>
-          </label>
-        </div>
+        {!hideCheckbox && (
+          <div className={s.checkbox}>
+            <span>Discounted items</span>
+            <label className={`${s.checkbox} ${s.style_c}`}>
+              <input
+                type="checkbox"
+                checked={categoryFilter}
+                onClick={handleCategoryToggle}
+              />
+              <div className={s.checkbox__checkmark}></div>
+            </label>
+          </div>
+        )}
         <div className={s.sorter}>
           <span>Sorted</span>
           <select

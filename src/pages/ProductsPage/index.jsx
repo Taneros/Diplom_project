@@ -24,7 +24,6 @@ export default function ProductsPage() {
   //   dispatch(getProducts());
   // }, [dispatch]);
 
-  console.log("productList===", productList);
   return (
     <div className={`${s.wrapper} container`}>
       <div className={s.title}>

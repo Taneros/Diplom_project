@@ -59,18 +59,6 @@ export default function CartPage() {
   // const [quantity, setQuantity] = useState(1);
   const cart = useSelector((state) => state.user.cart);
 
-  // const calculateTotalPrice = (cart) => {
-  //   // return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  //   cart.reduce((total, item) => {
-  //     return (
-  //       total +
-  //       (item.discont_price !== null
-  //         ? item.discont_price * item.count
-  //         : item.price * item.count)
-  //     );
-  //   }, 0);
-  // };
-
   const calculateTotalCount = (cart) => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };

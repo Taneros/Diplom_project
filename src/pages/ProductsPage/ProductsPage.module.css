@@ -2,7 +2,7 @@
 .wrapper{
     cursor: pointer
 }
-    .title{
+    .title h2{
         text-align: start;
         color:  #282828;
         font-family: Montserrat;
@@ -12,15 +12,37 @@
         line-height: 110%; 
         padding: 40px 0;
         }
-.category_container{
+
+    .category_container{
     display: flex;
- 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(316px, 1fr));
-    grid-gap: 30px;
+    flex-wrap: wrap;
+    gap: 30px;
     max-width: 1360px;
+
     }
 
 
+/* /-/---- */
 
-
+.product_item {
+    width: calc(25% - 24px); /* Распределение на 4 столбца с отступами между элементами */
+    margin-bottom: 30px; /* Отступ между рядами */
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .product_item {
+      width: calc(33.33% - 24px); /* Распределение на 3 столбца с отступами между элементами */
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .product_item {
+      width: calc(50% - 24px); /* Распределение на 2 столбца с отступами между элементами */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .product_item {
+      width: 100%; /* Один элемент на всю ширину экрана */
+    }
+  }

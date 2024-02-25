@@ -16,6 +16,8 @@
     grid-template-columns: repeat(auto-fit, minmax(316px, 1fr));
     grid-gap: 30px;
     max-width: 1360px;
+
+    width: calc(25% - 24px);
     }
 .category_img{
     width: 316px;
@@ -91,6 +93,7 @@
     border-radius: 12px;
     border: 1px solid #DDD;
     overflow: hidden;
+    width: calc(25% - 24px);
 }
 .title_btn{
     display: flex;
@@ -165,3 +168,27 @@
   .addToCartButton:hover {
     background-color: #000000;    
   }
+  .added:hover{
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+}
+/* 
+
+  @media screen and (max-width: 1200px) {
+    .content_wrapper{
+      width: calc(33.33% - 24px); 
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .content_wrapper {
+      width: calc(50% - 24px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .content_wrapper {
+      width: 100%; 
+    }
+  } */

@@ -8,6 +8,7 @@ import { addItemToCart } from "../../../features/user/userSlice";
 // import { fetchAllProducts } from "../../../asyncActions/products";
 import { Link, useNavigate } from "react-router-dom";
 import { ROOT_URL } from "../../..";
+import FilterPanel from "../FilterPanel";
 
 export default function SaleModule({ showQuantitySaleItems, id }) {
   const { list } = useSelector(({ products }) => products);
@@ -41,17 +42,26 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
 
   return (
     <div className={`${s.wrapper} container`}>
-      <div className={s.title_btn}>
-        <h2 className={s.title}>Sale</h2>
+      <div>
         {showQuantitySaleItems && (
-          <div className={s.category_line_container}>
-            <div className={s.categories_line}></div>
-            <Link to="/sales">
-              <AllProductsBtn buttonText="All sales" />
-            </Link>
+          <div className={s.title_btn}>
+            <h2 className={s.title}>Sale</h2>
+            <div className={s.category_line_container}>
+              <div className={s.categories_line}></div>
+              <Link to="/sales">
+                <AllProductsBtn buttonText="All sales" />
+              </Link>
+            </div>
           </div>
         )}
       </div>
+
+      {!showQuantitySaleItems && (
+        <div>
+          <h2 className={s.title__discount}>Discounted items</h2>
+          <FilterPanel hideCheckbox={true} />
+        </div>
+      )}
 
       <div className={s.category_container}>
         {saleProducts.map((product) => (
