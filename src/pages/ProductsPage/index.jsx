@@ -1,11 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-
-// import {
-//   fetchAllProducts,
-//   fetchCategoryProducts,
-// } from "../../asyncActions/products";
 import s from "./ProductsPage.module.css";
 import ProductItem from "../../components/pages_element/ProductItem";
 import { useDispatch, useSelector } from "react-redux";

@@ -7,7 +7,6 @@
     cursor: pointer;
 }
 
-
 .title{
     text-align: start;
     color:  #282828;
@@ -17,7 +16,23 @@
     font-weight: 700;
     line-height: 110%; 
 
-    }
+}
+.category_wrapper {
+    transition: transform 0.3s ease;
+  }
+  
+  .category_wrapper:hover {
+    transform: scale(1.05); /* Масштабирование до 105% относительно исходного размера */
+  }
+.category_title{
+transition: transform 4s  ease-in-out 1s;
+}
+.category_title:hover{
+    color: #339933;
+/* text-decoration: underline; */
+
+
+}
 
 
 .category_container{

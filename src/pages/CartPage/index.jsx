@@ -91,21 +91,6 @@ export default function CartPage() {
   const totalCount = calculateTotalCount(cart);
   console.log(cart, "cart....");
 
-  // const handleDecrement = (itemId, quantity) => {
-  //   // Уменьшаем количество товара на 1
-  //     if (quantity > 1) {
-  //       dispatch(updateCartItemQuantity({ id: itemId, quantity: quantity - 1 }));
-  //     }
-  // };
-
-  // const handleIncrement = (itemId, quantity) => {
-  //   dispatch(updateCartItemQuantity({ id: itemId, quantity: quantity + 1 }));
-  // };
-
-  // const handleRemoveItem = (itemId) => {
-  //   dispatch(removeItemFromCart({ id: itemId }));
-  // };
-
   return (
     <div className={`${s.wrapper} container`}>
       {showCongratulations && (
@@ -237,7 +222,7 @@ export default function CartPage() {
                     },
                   })}
                 />
-                <p className={s.form__par}>{errors.name?.message}</p>
+                <p className={s.error__message}>{errors.name?.message}</p>
               </label>
               <label htmlFor="phone">
                 <input
@@ -253,7 +238,7 @@ export default function CartPage() {
                     },
                   })}
                 />
-                <p className={s.form__par}>{errors.phone?.message}</p>
+                <p className={s.error__message}>{errors.phone?.message}</p>
               </label>
 
               <label htmlFor="email">
@@ -269,7 +254,7 @@ export default function CartPage() {
                     },
                   })}
                 />
-                <p className={s.form__par}>{errors.email?.message}</p>
+                <p className={s.error__message}>{errors.email?.message}</p>
               </label>
 
               <button

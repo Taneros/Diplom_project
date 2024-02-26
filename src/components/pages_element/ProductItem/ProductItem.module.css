@@ -143,7 +143,11 @@
     position: relative;
     z-index: 1;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
+  .category_wrapper:hover {
+    transform: scale(1.05); 
+  }
 .category_wrapper:hover .addToCartButton{
     opacity: 1;
     transition: opacity 0.3s ease;

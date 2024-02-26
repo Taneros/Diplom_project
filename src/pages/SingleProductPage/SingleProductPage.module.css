@@ -174,7 +174,11 @@ margin-left: 20px;
 
 .count_btn{
     background-color: #ffff;
+    transition: transform 0.3s ease;
 }
+.count_btn:hover {
+    transform: scale(1.15); 
+  }
 .description__wrapper{
     display: flex;
     flex-direction: column;

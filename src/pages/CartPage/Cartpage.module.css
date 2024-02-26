@@ -53,6 +53,15 @@
     border-radius: 6px;
     justify-content: space-between;
 }
+.error__message{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 14px;
+    color: red;
+    /* margin-top: 4px; */
+
+}
 .labels{
     display: flex;
     flex-direction: column;
@@ -125,7 +134,12 @@
     font-size: 24px;
     cursor: pointer;
     color: #8B8B8B;
+    transition: transform 0.3s ease;
 }
+
+.count_btn:hover {
+    transform: scale(1.15); 
+  }
 .count{
     width:96px ;
     height: 58px;
@@ -163,7 +177,7 @@
     right: -1px;
 }
 .icons:hover{
-   color:#393
+   color:#339933;
 }
 .orders__details h3{
 font-size: 40px;

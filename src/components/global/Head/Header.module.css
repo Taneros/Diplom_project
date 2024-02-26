@@ -16,6 +16,8 @@
     width: 70px;
     height: 70px;
 }
+
+
 .header_img_cart{
     width: 48px;
     height: 48px;
@@ -60,11 +62,17 @@ a{
     position: absolute;
     top: 45px;
 }
-.header_nav_menu ul .list__item a:hover{
+.list__item a:hover{
+    color: #339933;
+}
+.list__item{
+    transition: transform 0.3s ease;
+}
+.list__item:hover{
     color: #339933;
     border-bottom: 2px solid #339933;
+    transform: scale(1.05);
 }
-
 .mobile__btn{
     display: none;
 }

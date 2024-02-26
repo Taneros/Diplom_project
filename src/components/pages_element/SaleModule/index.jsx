@@ -12,9 +12,8 @@ import FilterPanel from "../FilterPanel";
 
 export default function SaleModule({ showQuantitySaleItems, id }) {
   const { list } = useSelector(({ products }) => products);
-
   const dispatch = useDispatch();
-
+  const [isAdded, setIsAdded] = useState(false);
   const navigate = useNavigate();
 
   let saleProducts = list.filter((item) => item.discont_price !== null); // []
@@ -34,11 +33,26 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
   const handleAddToCart = (event, product) => {
     event.stopPropagation();
     dispatch(addItemToCart({ ...product }));
+    setIsAdded(true);
   };
 
   const handleClickCard = (id) => {
     navigate(`/products/${id}`);
   };
+
+  //added
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsAdded(false);
+    }, 1.5 * 1500);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isAdded]);
+
+  const buttonClassName = isAdded
+    ? `${s.addToCartButton} ${s.added}`
+    : s.addToCartButton;
 
   return (
     <div className={`${s.wrapper} container`}>
@@ -77,10 +91,12 @@ export default function SaleModule({ showQuantitySaleItems, id }) {
                 alt={`${product.title} || ${product.id}`}
               />
               <button
-                className={s.addToCartButton}
+                disabled={isAdded}
+                className={buttonClassName}
                 onClick={(event) => handleAddToCart(event, product)}
               >
-                Add to Cart
+                {/* Add to Cart */}
+                {isAdded ? "Added" : "Add to cart"}
               </button>
               <span className={s.discount_label}>
                 {`- ${(

@@ -16,11 +16,18 @@
     border: 1px solid  #DDD;
     cursor: pointer;
     height: 36px;
+    transition: transform 0.6s ease;
 }
+
 .allProducts_btn-active{
     display: none;
 }
-
+  .allProducts_btn:hover {
+    transform: scale(1.10); 
+    background-color:#339933;
+    color: white;
+    font-weight: bold;
+  }
 
 @media (max-width: 480px){
     .allProducts_btn{
