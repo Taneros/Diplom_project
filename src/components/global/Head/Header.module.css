@@ -7,7 +7,7 @@
     cursor: pointer;
     margin: 0 auto;
     text-decoration: none;
-    
+
 }
 .container__header{
     border-bottom: 1px solid #DDDDDD;
@@ -76,7 +76,20 @@ a{
 .mobile__btn{
     display: none;
 }
-
+@media screen and (max-width: 1400px){
+    .header_wrapper{
+        width: 100%;
+        /* padding: 0 20px; */
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1000px){
+    .container__header,
+    .header_wrapper {
+        width: 100%;
+        cursor: pointer;
+        padding: 0 10px;
+    }
+}
 
 @media screen and (min-width: 480px) and (max-width: 767px){
     .container__header,
@@ -145,7 +158,7 @@ a{
     }
 }
 
-@media screen and (min-width: 340px) and (max-width: 478px) {
+@media screen and (max-width: 479px) {
     .container__header,
     .header_wrapper{
         width:100%;

@@ -82,6 +82,7 @@ export default function FilterPanel({ hideCheckbox }) {
             />
           </form>
         </div>
+
         {!hideCheckbox && (
           <div className={s.checkbox}>
             <span>Discounted items</span>
@@ -95,6 +96,7 @@ export default function FilterPanel({ hideCheckbox }) {
             </label>
           </div>
         )}
+
         <div className={s.sorter}>
           <span>Sorted</span>
           <select

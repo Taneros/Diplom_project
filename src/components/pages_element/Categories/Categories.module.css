@@ -22,16 +22,13 @@
   }
   
   .category_wrapper:hover {
-    transform: scale(1.05); /* Масштабирование до 105% относительно исходного размера */
+    transform: scale(1.05); 
   }
 .category_title{
 transition: transform 4s  ease-in-out 1s;
 }
 .category_title:hover{
     color: #339933;
-/* text-decoration: underline; */
-
-
 }
 
 
@@ -54,8 +51,10 @@ transition: transform 4s  ease-in-out 1s;
     .category_container {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       max-width: 1360px;
+      
     }
    
+    
   }
     .category_line_container{
         display: flex;
@@ -91,10 +90,36 @@ transition: transform 4s  ease-in-out 1s;
    gap:32px;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1000px){
+    /* .category_container{
+        grid-template-columns:  repeat(auto-fit, minmax(220px, 1fr));;
+        grid-gap: 10px;
+        max-width:100%;
+    } */
+    .category_img{
+        width: 100%;
+        
+    }
+    .categories_line{
+        width: 100%;
+    }
+    .category_line_container{
+        width: 100%;
+    }
+    .wrapper{
+     width: 100%;
+     padding: 0 20px;
+     /* padding: 40px 0; */
+    }
+    .title{
+        font-size: 56px;
+    }
+}
+
 @media screen and (min-width: 480px) and (max-width: 767px){
     .category_container{
         display: grid;
-        grid-template-columns:  repeat(auto-fit, minmax(200px, 1fr));;
+        grid-template-columns:  repeat(auto-fit, minmax(200px, 1fr));
         grid-gap: 20px;
         max-width:100%;
     }
@@ -117,21 +142,35 @@ transition: transform 4s  ease-in-out 1s;
     }
     .wrapper{
         width: 80%;
+        padding: 40px 0;
     }
     
 }
-@media screen and (min-width: 340px) and (max-width: 478px) {
-    .category_container{
+@media screen and (max-width: 479px) {
+    /* .category_container{
         display: flex;
         flex-direction: column;
+        margin: 0 auto;
+      
+    } */
+    .title{
+        font-size: 40px;
+    }
+    .category_container{
+        display: grid;
+        grid-template-columns:  repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 20px;
+        max-width:100%;
+        margin: 0 auto;
     }
     .category_img{
-           height: 220px;
-        width: 320px;
+        max-width: 320px;
     }
   
     .wrapper{
         max-width:320px;
+        display: flex;
+        padding: 40px 0;
 
     }
     .category_line_container{
@@ -145,7 +184,5 @@ transition: transform 4s  ease-in-out 1s;
         margin-bottom:56px;
         margin-top: 24px;
     }
-    .title{
-        font-size: 40px;
-    }
+   
 }

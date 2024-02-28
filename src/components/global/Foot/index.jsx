@@ -6,10 +6,10 @@ import whatsapp_ic from "./../../media/ic-whatsapp.png";
 
 export default function Footer() {
   return (
-    <div className='container'>
+    <div className="container">
       <div className={s.contact_wrapper}>
         <h2 className={s.footer_title}>Contact</h2>
-        <div className={s.constact_module_wrap}>
+        <div className={s.contact_module_wrap}>
           <div className={s.phone_form}>
             <p className={s.contact_texts}>Phone</p>
             <p className={s.data_text}>+49 999 999 99 99</p>
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className={s.constact_module_wrap}>
+        <div className={s.contact_module_wrap}>
           <div className={s.contact_header}>
             <p className={s.contact_texts}>Address</p>
             <p className={s.data_text}>

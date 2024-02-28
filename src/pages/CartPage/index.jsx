@@ -256,14 +256,15 @@ export default function CartPage() {
                 />
                 <p className={s.error__message}>{errors.email?.message}</p>
               </label>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={s.button}
-              >
-                Order
-              </button>
+              <div className={s.button__container}>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={s.button}
+                >
+                  Order
+                </button>
+              </div>
             </div>
           </form>
         )}

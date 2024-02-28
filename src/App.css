@@ -10,6 +10,7 @@
     width: 1360px;
     margin: 0 auto;
     margin-bottom: 40px;
+
   }
   
 input:focus {
@@ -17,17 +18,32 @@ input:focus {
   -webkit-appearance: none;  
   box-shadow: none !important  
 }
-
+@media screen and (max-width: 1400px){
+  .container{
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1000px){
+  .container{
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+  }
+}
 @media screen and (min-width: 480px) and (max-width: 767px) {
   .container{
     margin: 0 auto;
-  width: 100%;
+    width: 100%;
+    padding: 0 20px;
   }
 }
 
-@media screen and (min-width: 340px) and (max-width: 478px) {
+@media screen and (min-width: 340px) and (max-width: 479px) {
   .container{
    width: 100%;
     margin: 0 auto;
+    padding: 0 20px;
   }
 }

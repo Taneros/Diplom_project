@@ -1,9 +1,15 @@
 .filter_wrapper{
     height: 36px;
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 40px;
+
+    flex-wrap: wrap;
    
+}
+.filter__container{
+  display: flex;
+  gap: 40px;
 }
 .price_filter{
     width: 309px;       
@@ -147,4 +153,43 @@
     height: 20px;
     font-size: 16px;
    
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1000px){
+  .filter_wrapper{
+    gap: 32px;
+    flex-wrap: wrap;
+    height: 100%;
+    margin: 32px 0;
+  }
+  .filter__container{
+    gap: 32px;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px){
+  .filter_wrapper{
+    gap: 20px;
+    height: 100%;
+    padding: 32px 0;
+  }
+  .select_sorter{
+    font-size: 16px;
+  }
+}
+
+@media screen  and (max-width: 479px){
+  .filter_wrapper{
+    gap: 20px;
+    height: 100%;
+    padding: 32px 0;
+  }
+  .filter_wrapper span{
+    font-size: 18px;
+  }
+  .select_sorter{
+    font-size: 16px;
+  }
 }
