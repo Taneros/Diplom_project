@@ -17,6 +17,8 @@ export default function ProductsPageByCategory() {
     selectFilteredProductsByCategory
   );
 
+  console.log(`ProductsPageByCategory/index.jsx - line: 20 ->> list`, list);
+
   useEffect(() => {
     if (!id) {
       return;
@@ -28,25 +30,25 @@ export default function ProductsPageByCategory() {
     return <div> Loading ... </div>;
   }
 
-  return (
-    <>
-      <div className={`${s.wrapper} container`}>
-        <div className={s.title}>
-          {/* <FilterPanel /> */}
+  if (!isLoading)
+    return (
+      <>
+        <div className={`${s.wrapper} container`}>
+          <div className={s.title}>
+            <FilterPanel />
+            {!isLoading && category && <h2>{category.title}</h2>}
+          </div>
 
-          <h2>{category.title}</h2>
+          <div className={s.category_container}>
+            {list.length > 0 &&
+              list.map((elem) => (
+                <ProductItem data={elem} key={elem.id + elem.title} />
+              ))}
+            {!isLoading && (!list || list.length === 0) && (
+              <div>Sorry no products</div>
+            )}
+          </div>
         </div>
-
-        <div className={s.category_container}>
-          {list.length > 0 &&
-            list.map((elem) => (
-              <ProductItem data={elem} key={elem.id + elem.title} />
-            ))}
-          {!isLoading && (!list || list.length === 0) && (
-            <div>Sorry no products</div>
-          )}
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }
