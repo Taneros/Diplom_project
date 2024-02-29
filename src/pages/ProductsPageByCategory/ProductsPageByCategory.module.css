@@ -12,6 +12,9 @@
     line-height: 110%; 
     padding: 40px 0;
     }
+    .title h2{
+        font-size: 64px;
+    }
 .category_container{
     /* display: flex; */
  

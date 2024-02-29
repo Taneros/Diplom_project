@@ -359,7 +359,7 @@ color: #282828;
 
 
 
-  @media screen and (min-width: 480px) and (max-width: 767px){
+  @media screen and (max-width: 767px){
     .wrapper__content{
         flex-direction: column;
         gap: 20px;
@@ -374,7 +374,10 @@ color: #282828;
     }
     .title h3{
         white-space: normal;
+        font-size: 18px;
+        font-weight: normal;
     }
+  
     .wrapper h2{
         font-size: 48px;
     }
@@ -413,8 +416,73 @@ color: #282828;
 .categories_line{
     display: none;
 }
+.container__image img{
+    object-fit: cover;
+}
   }
   
   @media screen  and (max-width: 479px){
-
+    .wrapper__content{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .button{
+        width: 100%;
+    }
+  .product__info{
+    padding: 10px;
+  }
+    .container__image img{
+        max-width: 116px;
+        object-fit: cover;
+    }
+    .count__container{
+        flex-direction: column;
+        gap: 12px;
+    }
+    .container{
+        width: 100%;
+        min-height: 200px;
+    }
+    .container__products{
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+    .wrapper h2{
+        font-size: 40px;
+    }
+  
+   
+.price__counter{
+    font-size: 40px;
+}
+.count__wrapper{
+    max-width: 164px;
+    max-height:47px ;
+}
+.count__wrapper button{
+    max-width: 164px;
+    max-height:47px ;
+}
+    .icons{
+        top: 20px;
+        right: 20px;
+    }
+    .form{
+        width: 100%;
+    }
+   .labels label{
+        width: 100%;
+    }
+    .labels input{
+        width: 100%;
+    }
+    .title h3{
+        font-size: 18px;
+        font-weight: normal;
+    }
+    .container__image img{
+        object-fit: cover;
+        min-height: 200px;
+    }
   }

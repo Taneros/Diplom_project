@@ -10,7 +10,7 @@ export default function ProductsPageByCategory() {
   const { id } = useParams();
 
   const { list, loading } = useSelector((state) => state.categoryProducts);
-  console.log("list==", list);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

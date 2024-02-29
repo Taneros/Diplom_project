@@ -10,7 +10,6 @@ import { getRelatedProducts } from "../../features/products/productsSlice";
 // import {  useGetProductsQuery } from '../../features/api/apiSlice';
 
 export default function SingleProductPage({ item, data }) {
-  
   // Состояние для хранения информации о том,  была ли кнопка нажата
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
@@ -21,7 +20,7 @@ export default function SingleProductPage({ item, data }) {
   //Для скрытия текста
   const [showFullDescription, setShowFullDescription] = useState(false);
   const maxCharacters = 200; // Максимальное количество символов в коротком описании
- 
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
@@ -31,8 +30,6 @@ export default function SingleProductPage({ item, data }) {
 
   const { details, isLoading } = useSelector((state) => state.singleProduct);
 
-  console.log(`SingleProductPage/index.jsx - line: 34 ->> details`, details )
-
   //cart
   const [quantity, setQuantity] = useState(1);
   const { related, list } = useSelector(({ products }) => products);
@@ -40,7 +37,7 @@ export default function SingleProductPage({ item, data }) {
   useEffect(() => {
     if (!data || !list.length) return;
     dispatch(getRelatedProducts(data.category.id));
-    console.log('...data....', data)
+
     dispatch(getSingleProduct(id));
   }, [data, dispatch, list.length, id]);
 
@@ -53,11 +50,8 @@ export default function SingleProductPage({ item, data }) {
   }
 
   const addToCart = () => {
-    dispatch(addItemToCart({ ...details[0], quantity: quantity}));
+    dispatch(addItemToCart({ ...details[0], quantity: quantity }));
   };
-  
-
-
 
   const handleDecrement = () => {
     // Уменьшаем количество товара на 1
@@ -70,7 +64,7 @@ export default function SingleProductPage({ item, data }) {
     // Увеличиваем количество товара на 1
     setQuantity(quantity + 1);
   };
-    //-----
+  //-----
 
   return (
     <>
@@ -83,57 +77,61 @@ export default function SingleProductPage({ item, data }) {
                   <img src={ROOT_URL + image} alt={title} className={s.image} />
                 </div>
                 {/* <section> */}
-                  {/* <div className={s.price__container}> */}
-                    <h2 className={s.title}>{title}</h2>
-                    <div className={s.price}>
-                      {discont_price !== null ? (
-                        <div className={s.discount__wrapper}>
-                          <span
-                            className={s.discounted_price}
-                          >{`$${discont_price}`}</span>
-                          <span
-                            className={s.original_price}
-                          >{`$${price}`}</span>
-                          <span className={s.discount_percent}>
-                            {`-${((1 - discont_price / price) * 100).toFixed(
-                              0
-                            )}%`}
-                          </span>
-                        </div>
-                      ) : (
-                        <span className={s.normal_price}>{`$${price}`}</span>
-                      )}
+                {/* <div className={s.price__container}> */}
+                <h2 className={s.title}>{title}</h2>
+                <div className={s.price}>
+                  {discont_price !== null ? (
+                    <div className={s.discount__wrapper}>
+                      <span
+                        className={s.discounted_price}
+                      >{`$${discont_price}`}</span>
+                      <span className={s.original_price}>{`$${price}`}</span>
+                      <span className={s.discount_percent}>
+                        {`-${((1 - discont_price / price) * 100).toFixed(0)}%`}
+                      </span>
                     </div>
-                    <div className={s.counter__container}>
-                      <div className={s.count__wrapper}>
-                        <button className={s.count_btn} onClick={handleDecrement}>-</button>
-                        <div className={s.count}>{quantity}</div>
-                        <button className={s.count_btn} onClick={handleIncrement}>+</button>
-                      </div>
+                  ) : (
+                    <span className={s.normal_price}>{`$${price}`}</span>
+                  )}
+                </div>
+                <div className={s.counter__container}>
+                  <div className={s.count__wrapper}>
+                    <button className={s.count_btn} onClick={handleDecrement}>
+                      -
+                    </button>
+                    <div className={s.count}>{quantity}</div>
+                    <button className={s.count_btn} onClick={handleIncrement}>
+                      +
+                    </button>
+                  </div>
 
-                      <button
-                        className={`${s.button} ${isClicked ? s.click : ""}`}
-                        onClick={addToCart} > Add to cart </button>
-                    </div>
+                  <button
+                    className={`${s.button} ${isClicked ? s.click : ""}`}
+                    onClick={addToCart}
+                  >
+                    {" "}
+                    Add to cart{" "}
+                  </button>
+                </div>
 
-                    <div className={s.description__wrapper}>
-                      <p>
-                        {showFullDescription
-                          ? description
-                          : description.length > maxCharacters
-                          ? description.slice(0, maxCharacters) + "..."
-                          : description}
-                      </p>
-                      {description.length > maxCharacters && (
-                        <button
-                          className={s.description__btn}
-                          onClick={toggleDescription}
-                        >
-                          {showFullDescription ? "Read less" : "Read more"}
-                        </button>
-                      )}
-                    </div>
-                  {/* </div> */}
+                <div className={s.description__wrapper}>
+                  <p>
+                    {showFullDescription
+                      ? description
+                      : description.length > maxCharacters
+                      ? description.slice(0, maxCharacters) + "..."
+                      : description}
+                  </p>
+                  {description.length > maxCharacters && (
+                    <button
+                      className={s.description__btn}
+                      onClick={toggleDescription}
+                    >
+                      {showFullDescription ? "Read less" : "Read more"}
+                    </button>
+                  )}
+                </div>
+                {/* </div> */}
                 {/* </section> */}
               </div>
             )

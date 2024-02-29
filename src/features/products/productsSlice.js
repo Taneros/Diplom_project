@@ -113,8 +113,6 @@ export const selectFilteredProducts = (state) => {
     });
   }
 
-  console.log("filteredProducts===", filteredProducts);
-
   return filteredProducts;
 };
 

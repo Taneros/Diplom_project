@@ -24,17 +24,17 @@
     gap: 32px;
     /* background-image: url('../../media/discount_img.png'); */
 }
-img{
+/* img{
     width: 748px;
-    /* height: 360px; */
-}
+    height: 360px;
+} */
 .form{
     display: flex;
-    width: 516px;
+    /* width: 516px; */
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
-
+width: 100%;
 }
 
 .form > label > input{
@@ -46,19 +46,16 @@ img{
 
     border-radius: 6px;
     border: 1px solid  #FFF;
-    width: 516px;
+    /* width: 516px; */
     padding: 16px;
     background-color: transparent;
     color: #FFF;
 
     transition: border 0.3s ease;
-
+    width: 100%;
 
 }
 
-/* .form > input::placeholder {
-    color: #fff; 
-  } */
   input::placeholder {
     color: #fff; 
   }
@@ -70,19 +67,10 @@ img{
 .form > input:focus {
      outline: none; 
 }
-/* label{
-    outline: none !important;
-    background: transparent;
-} */
-/* .form__par{
-    color: red;
-    font-size: 12px;
-    padding: 0;
-    margin: 0;
-    text-align: end;
-} */
+
 label {
     position: relative;
+    width: 100%;
 }
 .error__message{
     position: absolute;
@@ -134,11 +122,11 @@ label {
 
 @media screen and (min-width: 768px) and (max-width: 1000px){
     .button{
-        width: 450px;
+        width: 100%;
         font-size: 20px;
     }
     .form>label>input{
-        max-width: 450px;
+        width:100% ;
     }
     .container{
         width: 100%;
@@ -146,7 +134,7 @@ label {
         padding: 32px 20px 32px 0;
     }
     .discount_wrapper img{
-        width: 450px;
+        max-width: 450px;
         transform: translateY(34px);
     }
     .discount_wrapper {
@@ -156,6 +144,9 @@ label {
     .form{
         width: 100%;
     }
+
+
+
   
 }
 @media screen and (min-width: 480px) and (max-width: 767px){
@@ -168,7 +159,11 @@ label {
         flex-direction: column;
         gap: 24px;
         min-width: 440px;
+        margin: 0 auto;
         
+    }
+    .background__image img{
+        display: flex;
     }
     .button{
         width: 400px;
@@ -212,6 +207,7 @@ label {
 @media screen and (max-width: 479px) {
     .form{
         width: 100%;
+       
     }
     
     .container{
@@ -224,6 +220,7 @@ label {
         flex-direction: column;
         gap: 24px;
         min-width: 280px;
+       
         
     }
     .button{
