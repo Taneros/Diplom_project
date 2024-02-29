@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addItemToCart,
   clearCart,
   decrementQuantity,
   deleteProduct,
@@ -13,7 +12,7 @@ import s from "./Cartpage.module.css";
 import { IoClose } from "react-icons/io5";
 import { CgClose } from "react-icons/cg";
 import AllProductsBtn from "../../components/UI/AllProductsBtn";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CartPage() {
   //form
@@ -23,9 +22,10 @@ export default function CartPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, defaultValues, isSubmitSuccessful, isSubmitting },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm();
+  const navigate = useNavigate();
 
   const handleDiscountSubmit = (data) => {
     const formData = {
@@ -63,15 +63,18 @@ export default function CartPage() {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const handleIncrement = (itemId) => {
+  const handleIncrement = (itemId, quantity, event) => {
+    event.stopPropagation();
     dispatch(incrementQuantity({ id: itemId }));
   };
 
-  const handleDecrement = (itemId) => {
+  const handleDecrement = (itemId, quantity, event) => {
+    event.stopPropagation();
     dispatch(decrementQuantity({ id: itemId }));
   };
 
-  const handleDeleteProduct = (itemId) => {
+  const handleDeleteProduct = (itemId, event) => {
+    event.stopPropagation();
     dispatch(deleteProduct({ id: itemId }));
   };
   // Общая стоимость товаров в корзине
@@ -90,6 +93,11 @@ export default function CartPage() {
 
   const totalCount = calculateTotalCount(cart);
   console.log(cart, "cart....");
+
+  const handleClickCard = (event, id) => {
+    event.stopPropagation();
+    navigate(`/products/${id}`);
+  };
 
   return (
     <div className={`${s.wrapper} container`}>
@@ -136,7 +144,12 @@ export default function CartPage() {
       <div className={s.wrapper__content}>
         <div className={s.container__products}>
           {cart.map((item) => (
-            <div key={item.id} className={s.container}>
+            <div
+              key={item.id}
+              className={s.container}
+              onClick={(event) => handleClickCard(event, item.id)}
+            >
+              <Link to=""></Link>
               <div className={s.container__image}>
                 <img src={ROOT_URL + item.image} alt={item.title} />
               </div>
@@ -145,7 +158,7 @@ export default function CartPage() {
                   <h3>{item.title}</h3>
                   <IoClose
                     className={s.icons}
-                    onClick={() => handleDeleteProduct(item.id)}
+                    onClick={(event) => handleDeleteProduct(item.id, event)}
                   />
                 </div>
                 <div className={s.count__container}>
@@ -153,14 +166,18 @@ export default function CartPage() {
                     <div className={s.count__wrapper}>
                       <button
                         className={s.count_btn}
-                        onClick={() => handleDecrement(item.id, item.quantity)}
+                        onClick={(event) =>
+                          handleDecrement(item.id, item.quantity, event)
+                        }
                       >
                         -
                       </button>
                       <div className={s.count}>{item.quantity}</div>
                       <button
                         className={s.count_btn}
-                        onClick={() => handleIncrement(item.id, item.quantity)}
+                        onClick={(event) =>
+                          handleIncrement(item.id, item.quantity, event)
+                        }
                       >
                         +
                       </button>

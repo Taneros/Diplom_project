@@ -9,14 +9,15 @@ import { addItemToCart } from "../../../features/user/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { ROOT_URL } from "../../..";
 import FilterPanel from "../FilterPanel";
+import { selectFilteredProducts } from "../../../features/products/productsSlice";
 
 export default function SaleModule({ showQuantitySaleItems, id }) {
-  const { list } = useSelector(({ products }) => products);
+  const productList = useSelector(selectFilteredProducts);
   const dispatch = useDispatch();
   const [isAdded, setIsAdded] = useState(false);
   const navigate = useNavigate();
 
-  let saleProducts = list.filter((item) => item.discont_price !== null); // []
+  let saleProducts = productList.filter((item) => item.discont_price !== null); // []
 
   if (showQuantitySaleItems) {
     saleProducts = saleProducts

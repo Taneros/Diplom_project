@@ -22,6 +22,7 @@
     max-height: 180px;
     border-radius: 12px;
     overflow: hidden;
+    cursor: pointer;
 
 }
 .container__products{

@@ -11,7 +11,7 @@ import productsSlice, {
 
 export default function ProductsPage() {
   const productList = useSelector(selectFilteredProducts);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(getProducts());
