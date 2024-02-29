@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ROOT_URL } from "../..";
 import s from "./SingleProductPage.module.css";
 import { addItemToCart } from "../../features/user/userSlice";
-import { getRelatedProducts } from "../../features/products/productsSlice";
+// import { getRelatedProducts } from "../../features/products/productsSlice";
 
 // import {  useGetProductsQuery } from '../../features/api/apiSlice';
 
@@ -36,7 +36,7 @@ export default function SingleProductPage({ item, data }) {
 
   useEffect(() => {
     if (!data || !list.length) return;
-    dispatch(getRelatedProducts(data.category.id));
+    // dispatch(getRelatedProducts(data.category.id));
 
     dispatch(getSingleProduct(id));
   }, [data, dispatch, list.length, id]);

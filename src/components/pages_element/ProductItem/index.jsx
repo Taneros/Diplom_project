@@ -3,7 +3,7 @@ import s from "../ProductItem/ProductItem.module.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ROOT_URL } from "../../..";
-import { getRelatedProducts } from "../../../features/products/productsSlice";
+// import { getRelatedProducts } from "../../../features/products/productsSlice";
 import { addItemToCart } from "../../../features/user/userSlice";
 
 export default function ProductItem({ data }) {

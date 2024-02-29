@@ -4,46 +4,47 @@ import ProductItem from "../../components/pages_element/ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FilterPanel from "../../components/pages_element/FilterPanel";
-import { getCategoryProducts } from "../../features/categoryProducts/categoryProductsSlice.js";
+import {
+  getCategoryProducts,
+  selectFilteredProductsByCategory,
+} from "../../features/categoryProducts/categoryProductsSlice.js";
 
 export default function ProductsPageByCategory() {
   const { id } = useParams();
-
-  const { list, loading } = useSelector((state) => state.categoryProducts);
-
   const dispatch = useDispatch();
+
+  const { list, category, isLoading } = useSelector(
+    selectFilteredProductsByCategory
+  );
 
   useEffect(() => {
     if (!id) {
       return;
     }
-
     dispatch(getCategoryProducts(id));
-  }, [dispatch, id]);
+  }, [id]);
 
-  if (!list.category || loading) {
+  if (isLoading) {
     return <div> Loading ... </div>;
   }
-
-  const { category, data } = list;
-
-  //-----filter
 
   return (
     <>
       <div className={`${s.wrapper} container`}>
         <div className={s.title}>
-          <FilterPanel />
+          {/* <FilterPanel /> */}
 
           <h2>{category.title}</h2>
         </div>
 
         <div className={s.category_container}>
-          {data.length > 0 &&
-            data.map((elem) => (
+          {list.length > 0 &&
+            list.map((elem) => (
               <ProductItem data={elem} key={elem.id + elem.title} />
             ))}
-          {data.length === 0 && <div>Sorry no products</div>}
+          {!isLoading && (!list || list.length === 0) && (
+            <div>Sorry no products</div>
+          )}
         </div>
       </div>
     </>

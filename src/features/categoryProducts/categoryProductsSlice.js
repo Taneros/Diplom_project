@@ -23,29 +23,24 @@ const categoryProductsSlice = createSlice({
       category: null,
       data: null,
     },
-    // filters: {
-    //   search: "",
-    //   priceRange: { min: null, max: Infinity },
-    //   category: false,
-    // },
-    // sorting: "default",
+    filters: {
+      priceRange: { min: null, max: Infinity },
+      category: false, // discount category
+    },
+    sorting: "default",
     isLoading: false,
   },
-  reducers: {},
-  // reducers: {
-  //   setSearchFilter: (state, action) => {
-  //     state.filters.search = action.payload.trim().toLowerCase();
-  //   },
-  //   setPriceRangeFilter: (state, action) => {
-  //     state.filters.priceRange = action.payload;
-  //   },
-  //   setSorting: (state, action) => {
-  //     state.sorting = action.payload;
-  //   },
-  //   setCategoryFilters: (state, action) => {
-  //     state.filters.category = action.payload;
-  //   },
-  // },
+  reducers: {
+    setPriceRangeFilter: (state, action) => {
+      state.filters.priceRange = action.payload;
+    },
+    setSorting: (state, action) => {
+      state.sorting = action.payload;
+    },
+    setCategoryFilters: (state, action) => {
+      state.filters.category = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCategoryProducts.pending, (state) => {
       state.isLoading = true;
@@ -60,71 +55,74 @@ const categoryProductsSlice = createSlice({
   },
 });
 
+export const selectFilteredProductsByCategory = (state) => {
+  console.log(
+    `categoryProducts/categoryProductsSlice.js - line: 64 ->> state.categoryProducts`,
+    state.categoryProducts
+  );
+
+  const { list, filters, sorting, isLoading } = state.categoryProducts;
+
+  const { category, data } = list;
+
+  let filteredProducts = [...(data || [])].sort((a, b) => {
+    const priceA = a.discont_price !== null ? a.discont_price : a.price;
+    const priceB = b.discont_price !== null ? b.discont_price : b.price;
+    return priceA - priceB;
+  });
+
+  // if (filters.category) {
+  //   filteredProducts = filteredProducts.filter((product) =>
+  //     Boolean(product.discont_price)
+  //   );
+  //   console.log("Filtered by category:", filteredProducts);
+  // }
+
+  // if (
+  //   (filters.priceRange && filters.priceRange.min !== null) ||
+  //   filters.priceRange.max !== null
+  // ) {
+  //   filteredProducts = filteredProducts.filter(
+  //     (product) =>
+  //       product.price >= filters.priceRange.min &&
+  //       product.price <= filters.priceRange.max
+  //   );
+
+  //   console.log("Filtered by price range:", filteredProducts);
+  // }
+
+  // if (sorting === "newest") {
+  //   filteredProducts.sort(
+  //     (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+  //   );
+  // } else if (sorting === "price-high-low") {
+  //   filteredProducts.sort((a, b) => {
+  //     const priceA = a.discont_price !== null ? a.discont_price : a.price;
+  //     const priceB = b.discont_price !== null ? b.discont_price : b.price;
+  //     return priceB - priceA;
+  //   });
+  // } else if (sorting === "price-low-high") {
+  //   filteredProducts.sort((a, b) => {
+  //     const priceA = a.discont_price !== null ? a.discont_price : a.price;
+  //     const priceB = b.discont_price !== null ? b.discont_price : b.price;
+  //     return priceA - priceB;
+  //   });
+  // }
+
+  return {
+    category,
+    list,
+    isLoading,
+  };
+};
+
+export const {
+  // setSearchFilter,
+  // toggleCategoryFilter,
+  setCategoryFilters,
+  setPriceRangeFilter,
+  setSorting,
+  // getRelatedProducts,
+} = categoryProductsSlice.actions;
+
 export default categoryProductsSlice.reducer;
-
-// export const selectFilteredProducts = (state) => {
-//   const { list, filters, sorting } = state.categoryProducts; //change products to categoryProducts
-
-//   // Преобразование объекта list в массив
-//   const productList = list.data || [];
-
-//   let filteredProducts = [...productList].sort((a, b) => {
-//     const priceA = a.discont_price !== null ? a.discont_price : a.price;
-//     const priceB = b.discont_price !== null ? b.discont_price : b.price;
-//     return priceA - priceB;
-//   });
-
-//   if (filters && filters.search !== "") {
-//     filteredProducts = filteredProducts.filter((product) =>
-//       product.title.toLowerCase().includes(filters.search)
-//     );
-//   }
-
-//   if (filters && filters.category) {
-//     filteredProducts = filteredProducts.filter((product) =>
-//       Boolean(product.discont_price)
-//     );
-//   }
-
-//   if (
-//     (filters && filters.priceRange.min !== null) ||
-//     filters.priceRange.max !== null
-//   ) {
-//     filteredProducts = filteredProducts.filter(
-//       (product) =>
-//         product.price >= filters.priceRange.min &&
-//         product.price <= filters.priceRange.max
-//     );
-//   }
-
-//   if (sorting === "newest") {
-//     filteredProducts.sort(
-//       (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
-//     );
-//   } else if (sorting === "price-high-low") {
-//     filteredProducts.sort((a, b) => {
-//       const priceA = a.discont_price !== null ? a.discont_price : a.price;
-//       const priceB = b.discont_price !== null ? b.discont_price : b.price;
-//       return priceB - priceA;
-//     });
-//   } else if (sorting === "price-low-high") {
-//     filteredProducts.sort((a, b) => {
-//       const priceA = a.discont_price !== null ? a.discont_price : a.price;
-//       const priceB = b.discont_price !== null ? b.discont_price : b.price;
-//       return priceA - priceB;
-//     });
-//   }
-
-//   return filteredProducts;
-// };
-
-// export const {
-//   setSearchFilter,
-//   toggleCategoryFilter,
-//   setCategoryFilters,
-//   setPriceRangeFilter,
-//   setSorting,
-//   getRelatedProducts,
-// } = categoryProductsSlice.actions;
-
-// //--

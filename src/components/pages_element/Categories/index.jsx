@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { ROOT_URL } from "../../..";
 
 export default function Categories({ showQuantityCategories }) {
-
   const { list } = useSelector(({ categories }) => categories);
 
   let slicedCategories = list;
@@ -17,8 +16,6 @@ export default function Categories({ showQuantityCategories }) {
   if (showQuantityCategories !== 0) {
     slicedCategories = list.slice(0, showQuantityCategories);
   }
-
-
 
   return (
     <div className={`${s.wrapper} container`}>
@@ -52,14 +49,13 @@ export default function Categories({ showQuantityCategories }) {
         </div>
       }
 
-
-{showQuantityCategories &&  (
-  <div className={s.btn__media}>
-  <Link to="/categories">
-    <AllProductsBtn buttonText="All categories" />
-  </Link>
-</div>
-)}
+      {showQuantityCategories && (
+        <div className={s.btn__media}>
+          <Link to="/categories">
+            <AllProductsBtn buttonText="All categories" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

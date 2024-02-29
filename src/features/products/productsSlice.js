@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ROOT_URL } from "../..";
 import axios from "axios";
-import { shuffle } from "../../utils/common";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
@@ -24,16 +23,12 @@ const productsSlice = createSlice({
     filters: {
       // search: "",
       priceRange: { min: null, max: Infinity },
-      category: false,
+      category: false, // discount category
     },
     sorting: "default",
     isLoading: false,
   },
   reducers: {
-    setSearchFilter: (state, action) => {
-      state.filters.search = action.payload.trim().toLowerCase();
-    },
-
     setPriceRangeFilter: (state, action) => {
       state.filters.priceRange = action.payload;
     },
@@ -58,7 +53,6 @@ const productsSlice = createSlice({
   },
 });
 
-//--
 export const selectFilteredProducts = (state) => {
   const { list, filters, sorting } = state.products;
 
@@ -67,19 +61,11 @@ export const selectFilteredProducts = (state) => {
     const priceB = b.discont_price !== null ? b.discont_price : b.price;
     return priceA - priceB;
   });
-  console.log("filteredProducts....", filteredProducts);
-
-  // if (filters.search !== "") {
-  //   filteredProducts = filteredProducts.filter((product) =>
-  //     product.title.toLowerCase().includes(filters.search)
-  //   );
-  // }
 
   if (filters.category) {
     filteredProducts = filteredProducts.filter((product) =>
       Boolean(product.discont_price)
     );
-    console.log("Filtered by category:", filteredProducts);
   }
 
   if (
@@ -91,8 +77,6 @@ export const selectFilteredProducts = (state) => {
         product.price >= filters.priceRange.min &&
         product.price <= filters.priceRange.max
     );
-
-    console.log("Filtered by price range:", filteredProducts);
   }
 
   if (sorting === "newest") {
@@ -117,12 +101,12 @@ export const selectFilteredProducts = (state) => {
 };
 
 export const {
-  setSearchFilter,
-  toggleCategoryFilter,
+  // setSearchFilter,
+  // toggleCategoryFilter,
   setCategoryFilters,
   setPriceRangeFilter,
   setSorting,
-  getRelatedProducts,
+  // getRelatedProducts,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
